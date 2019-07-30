@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('sidebar')
 <hr class="sidebar-divider my-0">
 
 <li class="nav-item active">
@@ -83,3 +86,4 @@
 </li>
 
 <hr class="sidebar-divider d-none d-md-block">
+@endsection

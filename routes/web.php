@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dashboard', 'DashboardController@index');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('pos', 'SaleAutomation\Pos\PosController@index')->name('pos');
+
+Route::post('/GetNoGoodsBarcode', 'IC\Goods\GoodsController@GetNoGoodsBarcode');

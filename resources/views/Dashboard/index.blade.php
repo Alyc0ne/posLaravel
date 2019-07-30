@@ -9,6 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <script>var base_url = "{{ url('/') }}";</script>
     <!-- Js Bundle-->
     <script src="js/extensions/jquery.min.js"></script>
     <script src="js/extensions/bootstrap.bundle.min.js"></script>
@@ -31,6 +32,7 @@
 </head>
 
 <body id="page-top" class='sidebar-toggled'>
+  @extends('Shared.Modal.Goods.NoGoodsBarcode')
   <?php
       // $this->load->view("Shared/Modal/Goods");
       // $this->load->view("Shared/Modal/Unit");
@@ -158,27 +160,9 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-          </div> -->
-
           <!-- Content Row -->
           <div class="row">
-            <?php 
-              // if (isset($result)) {
-              //     $Arr = ([
-              //         "result" => $result,
-              //         "Icon_Edit" => $Icon_Edit,
-              //         "Icon_Delete" => $Icon_Delete
-              //     ]);
-              //     $this->load->view($path_link,$SystemName,$Arr); 
-              // }else {
-              //     $this->load->view($path_link,$SystemName); 
-              // }
-            ?>
+              @yield('content')
           </div>
 
         </div>
@@ -191,7 +175,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Alyc0ne &copy; 2019 , Source Ver. 0.0.0.1, All right reserved.</span> 
+            <span>Quardruple &copy; 2019 , Source Ver. 0.0.0.1, All right reserved.</span> 
           </div>
         </div>
       </footer>

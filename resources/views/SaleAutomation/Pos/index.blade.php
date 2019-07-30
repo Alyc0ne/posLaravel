@@ -1,7 +1,11 @@
+@extends('Dashboard.index')
+
+@section('content')
 <script type="text/javascript" src="js/system/SaleAutomation/Pos/PosSales.js"></script>
 <script type="text/javascript" src="js/system/SaleAutomation/Pos/transac-SalesGoods.js"></script>
+<script type="text/javascript" src="js/system/IC/Goods/NoGoodsBarcode.js"></script>
 
-<input type='hidden' id='SystemName' name='SystemName' value='<?php echo $SystemName; ?>'>
+<input type='hidden' id='SystemName' name='SystemName' value='<?php //echo $SystemName; ?>'>
 <div class="col-lg-8">
     <!-- Project Card Example -->
     <div class="card shadow mb-4 h_detail_pos" id="left_SellGoods">
@@ -25,7 +29,7 @@
                     <div class="col-md-6 col-lg-4 col-xlg-3">
                         <div class="card mb-4 py-3 border-left-primary pointer p_tb4" onclick="javascript:ShowModalNoGoodsBarcode();">
                             <div class="card-body p_tb4">
-                                <img class='img_responsive' src='<?php echo base_url(); ?>extensions/images/icon/789.png'>
+                                <img class='img_responsive' src='<?php //echo base_url(); ?>extensions/images/icon/789.png'>
                             </div>
                         </div>
                         <!-- <div class="card pointer" onclick="javascript:ShowModalNoGoodsBarcode();">
@@ -57,3 +61,4 @@
         </div>
     </div>
 </div>
+@endsection

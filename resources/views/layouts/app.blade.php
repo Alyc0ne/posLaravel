@@ -66,7 +66,8 @@
                 Mung Pen Kuy Rai A <sup>2</sup>
             </div>
         </div>
-        @extends('layouts.sidebar')
+        @yield('sidebar')
+        {{-- @extends('layouts.sidebar') --}}
     </ul>
 
     <!-- Content Wrapper -->
@@ -131,18 +132,7 @@
 
           <!-- Content Row -->
           <div class="row">
-            <?php 
-              // if (isset($result)) {
-              //     $Arr = ([
-              //         "result" => $result,
-              //         "Icon_Edit" => $Icon_Edit,
-              //         "Icon_Delete" => $Icon_Delete
-              //     ]);
-              //     $this->load->view($path_link,$SystemName,$Arr); 
-              // }else {
-              //     $this->load->view($path_link,$SystemName); 
-              // }
-            ?>
+              @yield('content')
           </div>
 
         </div>
