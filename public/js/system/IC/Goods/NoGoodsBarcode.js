@@ -19,30 +19,25 @@ function ShowModalNoGoodsBarcode() {
     });
 }
 
-function GetNoGoodsBarcode(callback,page,txtSearch) {
+function GetNoGoodsBarcode(callback,page = 1,txtSearch) {
     openloading(true);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    var type = page > 1 ? 'POST' : 'GET';
+    var url = page > 1 ? "./GetNoGoodsBarcode_Paginate?page='" + page + "'" : "./GetNoGoodsBarcode";
     $.ajax({
-        type: 'POST',
-        url: "./GetNoGoodsBarcode",
-        data: {
-            objTable : JSON.stringify(gebObjTable()),
-            page : page,
-            txtSearch : txtSearch
-        },
-        dataType: "json",
-        traditional: true,
+        type: type,
+        url: url,
         success: function (e) {
             if (e != null) {
                 $("#SearchNoGoodsBarcode").val("");
                 TempGoodsIDNoGoodsBarcode = [];
-                TempDataNoGoodsBarcode = e.GoodsData;
-
-                
+                //TempDataNoGoodsBarcode = e.GoodsData;
+                $(".renderModal").html(e);
 
                 openloading(false);
                 if (callback != null) {
@@ -55,6 +50,14 @@ function GetNoGoodsBarcode(callback,page,txtSearch) {
         }
     });
 }
+
+$(document).on("click", ".pagination a", function (e) {
+    e.preventDefault();
+    var page = $(this).attr('href').split('page=')[1];
+    var txtSearch = $("#SearchNoGoodsBarcode").val();
+    GetNoGoodsBarcode(null,page,txtSearch); 
+  });
+
 
 $(document).on('click', '.NoBarcode_Page-link', function(){  
     var page = $(this).attr("id");  

@@ -1,5 +1,5 @@
 <?php
-
+use App\Goods;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +23,15 @@ Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('pos', 'SaleAutomation\Pos\PosController@index')->name('pos');
 
-Route::post('/GetNoGoodsBarcode', 'IC\Goods\GoodsController@GetNoGoodsBarcode');
+//Route::get('/GetNoGoodsBarcode', 'IC\Goods\GoodsController@GetNoGoodsBarcode');
+// Route::post('/GetNoGoodsBarcode', function ()
+// {
+//     $Goods = Goods::paginate(5);
+//     return View::make('Shared.Modal.Goods.NoGoodsBarcode')->with('Goods', $Goods);
+// });
+
+// Route::post('/GetNoGoodsBarcode_Paginate', function ()
+// {
+//     $Goods = Goods::paginate(5);
+//     return View::make('Shared.Modal.Goods.NoGoodsBarcode')->with('Goods')->render();
+// });

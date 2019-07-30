@@ -1,7 +1,3 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="js/system/IC/Goods/NoGoodsBarcode.js"></script>
-
 <div class="modal fade" id="NoGoodsBarcodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
@@ -37,28 +33,21 @@
                 </tr>
             </thead>
             <tbody>
-
-              @foreach ($Goods as $_Goods)
-              {{ $_Goods }}
-                {{-- {{ "<tr id='uid' data-goodsid='.$_Goods['GoodsID'].'>" }}
-                {{ 
-                  "<th>
-                    <label class='customcheckbox'>
-                    <input type='checkbox' class='chkNoGoodsBarcode' />
-                    <span class='checkmark'></span>
-                    </label>
-                  </th>" 
-                }} --}}
-                {{-- {{ "<td id='NoGoodsBarcode_QtyBarcode'><input type='number' style='height:5%;' class='text-center w_100' id='QtyBarcode' name='QtyBarcode' min='1' max='99' value='1'></td>" }}
-                {{ "<td id='NoGoodsBarcode_GoodsName'>'. $data['GoodsName'] .'</td>"}} --}}
-                {{-- {{ "<td id='NoGoodsBarcode_GoodsPrice' class='text-right'>'.number_format((float)$data['GoodsPrice'], 2, '.', '').'</td>" }} --}}
+              {{-- @if (is_array($Goods)) --}}
+                @foreach ($Goods as $_Goods)
+                  <tr id='uid' data-goodsid="{{ $_Goods->GoodsID }}">
+                    <th><label class='customcheckbox'><input type='checkbox' class='chkNoGoodsBarcode' /><span class='checkmark'></span></label></th>
+                    <td id='NoGoodsBarcode_QtyBarcode'><input type='number' style='height:5%;' class='text-center w_100' id='QtyBarcode' name='QtyBarcode' min='1' max='99' value='1'></td>
+                    <td id='NoGoodsBarcode_GoodsName'>{{ $_Goods->GoodsName }}</td>
+                    <td id='NoGoodsBarcode_GoodsPrice' class='text-right'>{{ number_format((float)$_Goods->GoodsPrice, 2, '.', '') }}</td>
+                  </tr>
                 @endforeach
-            </tr>
+              {{-- @endif --}}
             </tbody>
           </table>
         </div>
         <div class="page">
-            
+          {{ $Goods->links() }}
         </div>
       </div>
       <div class="modal-footer">

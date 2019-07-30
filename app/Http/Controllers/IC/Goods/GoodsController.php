@@ -5,6 +5,8 @@ namespace App\Http\Controllers\IC\Goods;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\BaseSystem;
+use Illuminate\Support\Facades\DB;
+use App\Goods;
 
 class GoodsController extends Controller
 {
@@ -15,15 +17,20 @@ class GoodsController extends Controller
 
     public function getNoGoodsBarcode()
     {
-        $BaseSystem = new BaseSystem();
-        $where = $BaseSystem->defaultWhere();
-        $w = array('IsDelete' => false);
-        $fields = array('GoodsNo','GoodsName');
-        $Goods = $BaseSystem->sqlQuerySomeFields('smGoods',$w,$fields)->toArray();
-        //$e = dd($Goods);
-        //return Response()->json( $result );
-        $tt = View::make('Shared.Modal.Goods.NoGoodsBarcode')->with(compact('Goods'));
-        return Response()->json( $result );
+        $GoodsModel = new Goods();
+        $Goods = $GoodsModel::paginate(5);
+        return view('Shared.Modal.Goods.NoGoodsBarcode', compact('Goods','GoodsPaginate'))->render();
+        //view('Shared.Modal.Goods.NoGoodsBarcode', compact('Goods'));
+
+
+        // $BaseSystem = new BaseSystem();
+        // $GoodsModel = new Goods();
+        // $where = $BaseSystem->defaultWhere();
+        // $w = array('IsDelete' => false);
+        // $fields = array('GoodsID','GoodsNo','GoodsName','GoodsPrice');
+        // $Goods = $GoodsModel::paginate(5);
+        //$tt = view('Shared.Modal.Goods.NoGoodsBarcode', compact('Goods','GoodsPaginate'))->render();
+        //return Response()->json($tt);
 
         //https://www.youtube.com/watch?v=nfDMTzmGi9Q
         //https://www.youtube.com/watch?v=xME6uHYTcLU Debug PHP

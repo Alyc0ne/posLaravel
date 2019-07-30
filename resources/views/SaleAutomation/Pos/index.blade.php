@@ -1,5 +1,5 @@
 @extends('Dashboard.index')
-
+@extends('Shared.Modal.Goods.NoGoodsBarcode')
 @section('content')
 <script type="text/javascript" src="js/system/SaleAutomation/Pos/PosSales.js"></script>
 <script type="text/javascript" src="js/system/SaleAutomation/Pos/transac-SalesGoods.js"></script>

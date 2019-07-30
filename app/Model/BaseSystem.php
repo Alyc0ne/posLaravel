@@ -27,8 +27,12 @@ class BaseSystem extends Model
         return $result = DB::table($table)->where($where)-get();//->simplePaginate($pagination);
     }
 
-    public function sqlQuerySomeFields($table, $where, $fields)
+    public function sqlQuerySomeFields($table, $where, $fields, $pagination = 0)
     {
-        return $result = DB::table($table)->select($fields)->where($where)->get();
+        if ($pagination > 0) {
+            return DB::table($table)->select($fields)->where($where)->simplePaginate(5);
+        }else {
+            return DB::table($table)->select($fields)->where($where)->get();
+        }   
     }
 }

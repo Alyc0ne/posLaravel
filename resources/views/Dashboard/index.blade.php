@@ -32,7 +32,7 @@
 </head>
 
 <body id="page-top" class='sidebar-toggled'>
-  @extends('Shared.Modal.Goods.NoGoodsBarcode')
+  {{-- @extends('Shared.Modal.Goods.NoGoodsBarcode') --}}
   <?php
       // $this->load->view("Shared/Modal/Goods");
       // $this->load->view("Shared/Modal/Unit");
