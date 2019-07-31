@@ -9,20 +9,6 @@ $("#discountCash").change(function(e) {
 
 });
 
-function manageAdd_updateGoods(QtyBarcode,DataGoods,TransactionGoods) {
-    var index = null;
-    if(TransactionGoods.length >= 1){
-        index = TransactionGoods.find((x => x.GoodsID == DataGoods.GoodsID));
-    }
-
-    if(index == null){
-        var GoodsPrice = transacSalesGoods.gridControl.addData(DataGoods,QtyBarcode);
-        transacSalesGoods.gridControl.calSummary(true,parseFloat(GoodsPrice));
-    }else{
-        transacSalesGoods.gridControl.updateGoodsByIndex(index.uid,DataGoods.GoodsPrice,QtyBarcode);
-    } 
-}
-
 $(document).on("click","#RemoveGoods", function(e){
     var uid = $(this).closest("#GoodDetail").data("uid");
     bootbox.confirm(

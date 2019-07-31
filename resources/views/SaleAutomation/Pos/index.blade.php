@@ -1,5 +1,5 @@
 @extends('Dashboard.index')
-@extends('Shared.Modal.Goods.NoGoodsBarcode')
+{{-- @extends('Shared.Modal.Goods.NoGoodsBarcode') --}}
 @section('content')
 <script type="text/javascript" src="js/system/SaleAutomation/Pos/PosSales.js"></script>
 <script type="text/javascript" src="js/system/SaleAutomation/Pos/transac-SalesGoods.js"></script>
@@ -49,7 +49,7 @@
 
 <div class="col-lg-4">
     <div class="card shadow mb-4 h_detail_pos" id="Right_SellGoods">
-        <div class="card-header">
+        <div class="card-header h_20">
             <div style='height:100%;width:100%'>
                 <input type='text' class='wh100 text-center p_a15' style='font-size:36pt;' id='sub_total' name='sub_total' disabled>
             </div>
@@ -62,3 +62,6 @@
     </div>
 </div>
 @endsection
+<div class='ExtendsModal'>
+    @extends('Shared.Modal.Goods.NoGoodsBarcode')
+</div>

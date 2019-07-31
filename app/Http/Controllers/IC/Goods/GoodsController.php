@@ -36,4 +36,30 @@ class GoodsController extends Controller
         //https://www.youtube.com/watch?v=xME6uHYTcLU Debug PHP
         //https://medium.com/@jaythedeveloper/ultimate-guide-debug-php-iis-in-visual-studio-code-using-xdebug-14fced013f22 Debug PHP IIS
     }
+    
+    public function PaginateGoodsNoBarcode(Request $request)
+    {
+        if ($request->ajax()) {
+            $BaseSystem = new BaseSystem();
+            $where = $BaseSystem->defaultWhere();
+            $Goods = Goods::select('GoodsID','GoodsName','GoodsPrice')::where($where)::paginate(5);
+            return view('Shared.Modal.Goods.NoGoodsBarcodeContent', compact('Goods'))->render();
+        }
+    }
+
+    public function GetGoodsByBarcode(Request $request)
+    {
+        if ($request->ajax()) {
+            $Content = json_decode($request->getContent());
+            $GoodsBarcode = $Content->GoodsBarcode;
+            $BaseSystem = new BaseSystem();
+            //$where = $BaseSystem->defaultWhere();
+            $where = array('IsDelete' => false);
+            $where = array_merge($where, array('GoodsBarcode' => $GoodsBarcode));
+            $fields = array('GoodsID','GoodsName','GoodsPrice');
+            $Goods = $BaseSystem->sqlQuerySomeFields('smGoods', $where, $fields, true);
+            //DB::table('smGoods')->select('GoodsID','GoodsName','GoodsPrice')->where($where)->first();
+            return Response()->json($Goods);
+        }
+    }
 }
