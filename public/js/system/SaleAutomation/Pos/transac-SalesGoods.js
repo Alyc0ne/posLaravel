@@ -26,7 +26,17 @@ function setTransac() {
             var Rightbox = $('<div class="row" style="height:100%!important;"></div>');
             var gridStart = $('<div id="gridStart" style="width:100%;"></div>');
             //gridStart.append("<div class='col-12 transacgrid_h box_shadow'><i class='m-r-10 mdi mdi-cart-outline text_white'></i><span class='text_white'>สินค้าในตะกร้า</span></div>");  
-            gridStart.append("<div class='col-12 p_a5 transacgrid_d' id='transac-body'></div>");
+            
+            var transac_d = "<div class='col-12 p_a5 transacgrid_d' id='transac-body'>";
+            transac_d += "<table class='table'>";
+            transac_d += "<thead style='background-color: #fafafa;'>";
+            transac_d += "<tr><th>Name</th><th>Qty</th><th>Price</th></tr>";
+            transac_d += "</thead>";
+            transac_d += "<tbody></tbody>";
+            transac_d += "</table>";
+            transac_d += "</div>";
+
+            gridStart.append(transac_d);
 
             var gridEnd = $('<div id="gridEnd" style="width:100%;border-top:solid 1px #e3e6f0; padding:4px;"></div>');
             // var TotalSummary = "<div style='height:20%;width:100%'>";
@@ -76,13 +86,20 @@ function setTransac() {
             var _t_body = _t.Element.find('#transac-body');
             var uid = RandomMath();
             var TotalAmnt = DataGoods.GoodsPrice * QtyBarcode;
-            var PricePerGoods = QtyBarcode > 1 ? "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2))) : "";
-            var Goods = $('<div class="transacgrid_data box_shadow" id="GoodDetail" data-uid="' + uid + '"></div>');
-            Goods.append("<div class='w_10 float-left text-center box-highlight'><span class='w_100 h_0 text-center' name='GoodsQty'>"  + QtyBarcode + "</span></div>");
-            Goods.append("<div class='w_40 float-left text-left text-ellipsis' alt = '" + DataGoods.GoodsName + "'><span>" + DataGoods.GoodsName + "</span></div>");
-            Goods.append("<div class='w_20 float-left text-right'><span id='PricePerGoods' style='display:inline-block;'>"  + PricePerGoods + "</span></div>");
-            Goods.append("<div class='w_20 float-left text-right'><span id='TotalAmnt'>" + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + "</span></div>");
-            Goods.append("<div class='w_10 float-left text-right'><img id='RemoveGoods' src='" + base_url + "extensions/images/icon/delete_16_red.png' class='p_b2 pointer'><input type='hidden' value='" + uid + "'></div>");
+            //var PricePerGoods = QtyBarcode > 1 ? "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2))) : "";
+            var Goods = $('<tr id="GoodDetail" data-uid="' + uid + '"></tr>');
+            Goods.append('<td>' + DataGoods.GoodsName + '</td>');
+            Goods.append('<td>' + QtyBarcode + '</td>');
+            Goods.append('<td>' + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + '</td>');
+            // var PricePerGoods = "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2)));
+            // var Goods = $('<div class="transacgrid_data box_shadow" id="GoodDetail" data-uid="' + uid + '"></div>');
+            // Goods.append("<div class='w_60 float-left text-left text-ellipsis' alt = '" + DataGoods.GoodsName + "'><span>" + DataGoods.GoodsName + "</span></div>");
+            // Goods.append("<div class='w_10 float-left text-center box-highlight'><span class='w_100 h_0 text-center' name='GoodsQty'>"  + QtyBarcode + "</span></div>");
+            
+            //Goods.append("<div class='w_20 float-left text-right'><span id='PricePerGoods' style='display:inline-block;'>"  + PricePerGoods + "</span></div>");
+            // Goods.append("<div class='w_20 float-left text-right'><span id='TotalAmnt'>" + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + "</span></div>");
+            // Goods.append("<div class='w_10 float-left text-right'><button type='button' class='btn btn-danger' style='font-size:4px;'>Delete</button><input type='hidden' value='" + uid + "'></div>");
+            //Goods.append("<div class='w_10 float-left text-right'><img id='RemoveGoods' src='" + base_url + "extensions/images/icon/delete_16_red.png' class='p_b2 pointer'><input type='hidden' value='" + uid + "'></div>");
             _t_body.append(Goods);
             arr_Data.push({
                 uid : uid,

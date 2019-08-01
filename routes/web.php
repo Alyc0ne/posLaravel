@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('pos', 'SaleAutomation\Pos\PosController@index')->name('pos');
 

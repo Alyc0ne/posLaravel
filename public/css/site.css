@@ -121,3 +121,33 @@ li {
 li>ul{
   display: none;
 }
+
+.content-wrapper {
+  width: 100%;
+  transition: padding 0.3s;
+}
+
+.content-wrapper {
+  margin-top: 40px;
+  /* padding-bottom: 100px; */
+}
+
+
+
+@media (min-width: 768px){
+  .page-with-contextual-sidebar {
+      padding-left: 50px;
+  }
+}
+
+@media (min-width: 1200px){
+  .page-with-contextual-sidebar {
+      padding-left: 220px;
+  }
+}
+
+.page-with-contextual-sidebar {
+  transition: padding-left 0.3s;
+}
+
+

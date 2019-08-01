@@ -173,6 +173,9 @@ span.imageDel {
 .p_r10{
     padding: 10px !important;
 }
+.p_t10{
+    padding-top: 10px !important;
+}
 .m_a0{
     margin: 0px !important;
 }
@@ -276,7 +279,7 @@ p.footer {
 
 .transacgrid_d{
     overflow:auto;
-    height:70%;
+    height:40%;
     /* border:solid 1px blue; */
 }
 
@@ -413,12 +416,12 @@ p.footer {
 
 @media only screen and (max-height:1980px) and (min-width: 1601px){
     .h_detail_pos{
-        height: 800px !important;
+        height: 780px !important;
     }
 
     .transacgrid_d{
         overflow:auto;
-        height:73.4%;
+        height:89.4%;
     }
 
     .transacgrid_f{
@@ -428,6 +431,14 @@ p.footer {
     .ListGoods{
         max-height: 535px;
         overflow: auto;
+    }
+
+    .transacgrid_data{
+        width: 100% !important;
+        height: 6% !important;
+        background-color: white !important;
+        margin-bottom: 2% !important;
+        padding: 2px !important;
     }
 }
 
@@ -570,3 +581,33 @@ p.footer {
       opacity: 0;
     }
   }
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 15px;
+}
+
+.block-menu {
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+    padding: 11px 0;
+    margin-bottom: 11px;
+}
+
+.block-content {
+    padding: 15px;
+}
+
+.block-barcode {
+    margin-top: 0;
+    background-color: #fafafa;
+    padding: 16px;
+    margin-bottom: 0;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    color: #2e2e2e;
+}
