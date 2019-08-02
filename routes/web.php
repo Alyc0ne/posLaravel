@@ -23,11 +23,15 @@ Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('pos', 'SaleAutomation\Pos\PosController@index')->name('pos');
 
+Route::get('goods', 'IC\Goods\GoodsController@index')->name('goods');
+
 //Route::get('/GetNoGoodsBarcode', 'IC\Goods\GoodsController@GetNoGoodsBarcode');
 
 Route::post('/PaginateGoodsNoBarcode', 'IC\Goods\GoodsController@PaginateGoodsNoBarcode');
 
 Route::post('/GetGoodsByBarcode', 'IC\Goods\GoodsController@GetGoodsByBarcode');
+
+
 
 // Route::post('/GetNoGoodsBarcode', function ()
 // {

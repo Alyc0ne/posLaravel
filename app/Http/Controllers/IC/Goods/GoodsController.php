@@ -15,6 +15,11 @@ class GoodsController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('IC/Goods/index');
+    }
+
     public function getNoGoodsBarcode()
     {
         $GoodsModel = new Goods();

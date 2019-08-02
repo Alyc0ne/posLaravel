@@ -13,10 +13,12 @@
 
     <script src="js/extensions/jquery.min.js"></script>
     <script src="js/system/apps.js"></script>
+    <script src="js/system/design.js"></script>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/site.css">
     <link rel="stylesheet" href="css/extensions/content/site.css">
+    <link rel="stylesheet" href="css/extensions/font-awesome/all.min.css">
 </head>
 <body>
 <header class="navbar navbar-header navbar-expand-sm js-navbar" data-qa-selector="navbar">
@@ -49,13 +51,14 @@
                     <a href="{{ route('pos') }}">POS</a>
                 </li>
                 <li>
-                    <a href="#" aria-expanded='false'>123456</a>
-                    <ul style="display: none;">
+                        <a href="{{ route('goods') }}">Goods</a>
+                    {{-- <a href="#" aria-expanded='false'>IC</a> --}}
+                    <ul> <!-- style="display: none;" -->
                         <li>
                             <a href="">Unit</a>
                         </li>
                         <li>
-                            <a href="">Goods</a>
+                            <a href="{{ route('goods') }}">Goods</a>
                         </li>
                     </ul>
                 </li>
@@ -64,7 +67,13 @@
     </div>
         
     <div class="content-wrapper">
+        <div class="mobile-overlay"></div>
         <div class="container-fluid">
+            <div class='block-menu'>
+                <button name="button" type="button" class="toggle-mobile-nav"><span class="sr-only">Open sidebar</span>
+                    <i aria-hidden="true" data-hidden="true" class="fa fa-bars"></i>
+                </button>
+            </div>
             @yield('content')
         </div>
     </div>
