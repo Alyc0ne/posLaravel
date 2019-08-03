@@ -595,14 +595,13 @@ p.footer {
     background-color: #fff;
     border-bottom: 1px solid #eaeaea;
     padding: 11px 0;
-    margin-bottom: 11px;
 }
 
 .block-content {
     padding: 15px;
 }
 
-.block-barcode {
+.block-group {
     margin-top: 0;
     background-color: #fafafa;
     padding: 16px;
@@ -610,4 +609,29 @@ p.footer {
     border-top: 1px solid #eaeaea;
     border-bottom: 1px solid #eaeaea;
     color: #2e2e2e;
+}
+
+
+.posRightBox div.block-group {
+    margin-top: 0;
+    background-color: white;
+    padding: 16px;
+    margin-bottom: 0;
+    border: none;
+    color: #2e2e2e;
+}
+
+.block-group-content {
+    border-right: 1px solid #eaeaea;
+}
+
+@media only screen and (max-width:1920px) {
+    .block-group{
+        height: 9%;
+        /* padding: 10px !important; */
+    }
+
+    .posRightBox div.block-group {
+        padding: 10px !important;
+    }
 }

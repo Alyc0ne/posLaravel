@@ -49,13 +49,13 @@ function setTransac() {
             //table += "</table>";
             //gridEnd.append(TotalSummary);
             
-            gridEnd.append("<div class='w-100></div>");
-            gridEnd.append("<button class='btn btn-success w_60 p-3 m_r10' id='SaveInvoice'>จ่ายชำระ (F1)</button>");
-            gridEnd.append("<button class='btn btn btn-warning w_37 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>");
+            // gridEnd.append("<div class='w-100></div>");
+            // gridEnd.append("<button class='btn btn-success w_60 p-3 m_r10' id='SaveInvoice'>จ่ายชำระ (F1)</button>");
+            // gridEnd.append("<button class='btn btn btn-warning w_37 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>");
             
-            gridStart.append(gridEnd);
-            Rightbox.append(gridStart);
-            _t.Element.append(Rightbox);
+            // gridStart.append(gridEnd);
+            // Rightbox.append(gridStart);
+            // _t.Element.append(Rightbox);
             //$("#Sell-PageLeft").append(LeftBox);
         }
     };

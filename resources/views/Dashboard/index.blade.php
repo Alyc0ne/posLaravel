@@ -16,7 +16,7 @@
     <script src="js/system/design.js"></script>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/design.css">
     <link rel="stylesheet" href="css/extensions/content/site.css">
     <link rel="stylesheet" href="css/extensions/font-awesome/all.min.css">
 </head>
@@ -41,7 +41,7 @@
     <div class="nav-sidebar">
         <div class="nav-sidebar-inner-scroll">
             <ul class="sidebar-top-level-items">
-                <li class="active">
+                <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a> 
                     {{-- {{ route('Dashboard') }}
                     {{ route('Unit') }}
