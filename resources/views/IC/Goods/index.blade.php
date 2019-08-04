@@ -1,5 +1,6 @@
 @extends('Dashboard.index')
 @section('content')
+<script src="js/system/IC/Goods/Goods.js"></script>
 <div class="block-content">
     <div class='block-menu' style="border-bottom:none;">
         <div class='row'>
@@ -38,3 +39,6 @@
     </div>
 </div>
 @endsection
+<div class='ExtendsModal'>
+    @extends('Shared.Modal.Goods.Goods')
+</div>

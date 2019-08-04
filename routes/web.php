@@ -31,7 +31,9 @@ Route::post('/PaginateGoodsNoBarcode', 'IC\Goods\GoodsController@PaginateGoodsNo
 
 Route::post('/GetGoodsByBarcode', 'IC\Goods\GoodsController@GetGoodsByBarcode');
 
+Route::post('/GenData', 'BaseController@GenData');
 
+Route::post('/BindSaveGoods', 'IC\Goods\GoodsController@BindSave');
 
 // Route::post('/GetNoGoodsBarcode', function ()
 // {

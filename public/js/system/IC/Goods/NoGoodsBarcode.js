@@ -2,17 +2,6 @@ var IsFirst = 0;
 let numClick = 0;
 let TempGoodsID = new Array();
 
-$(document).on("click", "#IsBarcode", function () {
-    var IsBarcode = $("#IsBarcode:checkbox:checked").length;
-    if (IsBarcode > 0) {
-        $("#GoodsBarcode").prop("disabled",false);
-        $("#GoodsBarcode").closest("div.form-group").find("span.text-red").html("*");
-    }else{
-        $("#GoodsBarcode").prop("disabled",true);
-        $("#GoodsBarcode").closest("div.form-group").find("span.text-red").html("");
-    }
-});
-
 function ShowModalNoGoodsBarcode() {
     //GetNoGoodsBarcode(function (callback) {
         //if (!!callback) {

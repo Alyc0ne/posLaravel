@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Model\BaseSystem;
 
 class BaseController extends Controller
 {
-    public function GenRunningNumber(){
+    public function GenRunningNumber($System){
+        $BaseSystem = new BaseSystem();
         $Year = date("Y");
         $Month = date("m");
-        $System = $this->input->post("System");
 
         if ($System == "Unit") {
             $FirstChar = "UN";$table = "smUnit";$coloumn = "UnitNo";
@@ -19,13 +21,12 @@ class BaseController extends Controller
             $FirstChar = "IN";$table = "soInvoice";$coloumn = "InvoiceNo";
         }
         
-
-        $RunningNumber = $this->db->order_by($coloumn, "DESC")->get($table)->row_array();
+        $RunningNumber = $BaseSystem->sqlQueryOneRowDesc($table, $coloumn);
 
         if(empty($RunningNumber)){
             $RunningNumber = $FirstChar.date("Ym")."-01";
         }else {
-            $Number = explode("-",$RunningNumber[$coloumn]);
+            $Number = explode("-",$RunningNumber->$coloumn);
             $chkYear = substr($Number[0],2,-2);
             $chkMonth = substr($Number[0],6);
             $StartRuning = "";
@@ -43,8 +44,39 @@ class BaseController extends Controller
             $LastRunning = $LastRunning < 10 ? "0".$LastRunning : $LastRunning;
             $RunningNumber = $StartRuning."-".$LastRunning;
         }
+        return $RunningNumber;
+        //return Response()->json($RunningNumber);
+    }
 
-        echo $RunningNumber;
+
+    public function GenData(Request $request)
+    {
+        $BaseSystem = new BaseSystem();
+        //$Result = array();
+        if ($request->ajax()) {
+            $Content = json_decode($request->getContent());
+            $System = $Content->System;
+            // $defaultWhere = $BaseSystem->defaultWhere();
+            $defaultWhere = array('IsDelete' => false);
+            $RunningNumber = $this->GenRunningNumber($System);
+            //array_push($Result, $RunningNumber);
+            
+            switch ($System) {
+                case 'Goods':
+                    $UnitData = $BaseSystem->sqlQuery('smUnit', $defaultWhere);
+                    $Unit = json_decode($UnitData);
+                    //array_push($Result, $Unit[0]);
+                    break;
+                
+                default:
+                    break;
+            }
+            $Result = array(
+                'RunningNumber' => $RunningNumber,
+                'Unit' => $Unit
+            );
+            return Response()->json($Result);
+        }
     }
 
     public function GetDataJson(){

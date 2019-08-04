@@ -217,14 +217,20 @@ function bindValidate(frm) {
 //     });
 // }
 
-function GenRunningNumber(system) {
+function GenData(system) {
     var Running = "";
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $.ajax({
         type: 'POST',
-        url: base_url + "Base/BaseController/GenRunningNumber",
-        data: { "System": system },
-        datatype: "json",
-        traditional: true,
+        url: "./GenData",
+        dataType:'json',
+        contentType: 'json',
+        data: JSON.stringify({System: "Goods"}),
+        contentType: 'application/json; charset=utf-8',
         async: false,
         success: function(e) {
             Running = e;
@@ -254,6 +260,10 @@ function GetDataJson(system, idSelect2 = null) {
         }
     });
     return Result;
+}
+
+function setUnitGoods(Unit) {
+    SetDataSelect2(Unit, "#GoodsUnit")
 }
 
 function SetDataSelect2(arr, name) {
@@ -407,11 +417,12 @@ function CheckPage() {
 //Goods
 function ShowModalGoods() {
     openloading(true);
-    $("#GoodsNo").val(GenRunningNumber("Goods"));
-    GetDataJson('Unit','#GoodsUnit');
+    var result = GenData("Goods");
+    $("#GoodsNo").val(result.RunningNumber);
+    setUnitGoods(result.Unit[0]);
     $("#GoodsModal").modal();
     setTimeout(function(){
-        $("#GoodsBarcode").focus();
+        $("#GoodsName").focus();
         openloading(false);
     },700);
 }
@@ -419,18 +430,24 @@ function ShowModalGoods() {
 function SaveGoodsModal() {
     if (bindValidate("#frmGoods")){
         openloading(true);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
             type: 'POST',
-            url: base_url + "Goods/GoodsController/BindSave",
-            data: {
+            url: "./BindSaveGoods",
+            data: 
+            JSON.stringify({
                 "GoodsNo" : $("#GoodsNo").val(),
                 "IsBarcode" : $("#IsBarcode:checkbox:checked").length,
                 "GoodsBarcode" : $("#GoodsBarcode").val(),
                 "GoodsName" : $("#GoodsName").val(),
                 "GoodsPrice" : $("#GoodsPrice").val(),
                 "GoodsCost" : $("#GoodsCost").val(),
-                "goods_unit_id" : $("#GoodsUnit").val()
-            },
+                "GoodsUnitID" : $("#GoodsUnit").val()
+            }),
             datatype: "json",
             traditional: true,
             success: function (e) {
@@ -445,32 +462,4 @@ function SaveGoodsModal() {
             }
         });
     }
-}
-
-function gebObjTable(numColumn) {
-    //if (numColumn == 3) {
-        var header = {
-            'class' : ['w_10 text-center','w_70','w_15 text-right'],
-            'name' : ['#','ชื่อสินค้า','ราคาสินค้า'],
-            'length' : 3
-        }
-    
-        var body = {
-            'BodyClass' : 'NoGoodsBarcode_Body',
-            'ID' : ['NoGoodsBarcode_QtyBarcode','NoGoodsBarcode_GoodsName','NoGoodsBarcode_GoodsPrice'],
-            'IsInput' : [true,false,false],
-            'detailBody' : {
-                'type' : ['number','',''],
-                'class' : ['text-center w_100 h_5','','text-right"'],
-                'name' : ['QtyBarcode','',''],
-                'id' : ['QtyBarcode','','']
-            },
-            'length' : 3
-        }
-    //}  
-
-    return obj = {
-        Header : header,
-        Body : body
-    };
 }
