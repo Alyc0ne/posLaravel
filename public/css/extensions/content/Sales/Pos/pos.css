@@ -1,4 +1,31 @@
 .posRightBox{
-    height: 760px;
+    height: 850px;
+}
+
+@media only screen and (max-height:1980px) and (min-width: 1601px){
+    .h_detail_pos{
+        height: 780px !important;
+    }
+
+    .transacgrid_d{
+        height:90.3%;
+    }
+
+    .transacgrid_f{
+        width: 35% !important;
+    }
+
+    .ListGoods{
+        max-height: 535px;
+        overflow: auto;
+    }
+
+    .transacgrid_data{
+        width: 100% !important;
+        height: 6% !important;
+        background-color: white !important;
+        margin-bottom: 2% !important;
+        padding: 2px !important;
+    }
 }
 

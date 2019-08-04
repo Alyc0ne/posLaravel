@@ -79,6 +79,9 @@ span.imageDel {
 .w_37{
     width: 37% !important;
 }
+.w_38{
+    width: 38% !important;
+}
 .w_40{
     width: 40% !important;
 }
@@ -414,33 +417,7 @@ p.footer {
     }
 }
 
-@media only screen and (max-height:1980px) and (min-width: 1601px){
-    .h_detail_pos{
-        height: 780px !important;
-    }
 
-    .transacgrid_d{
-        overflow:auto;
-        height:89.4%;
-    }
-
-    .transacgrid_f{
-        width: 35% !important;
-    }
-
-    .ListGoods{
-        max-height: 535px;
-        overflow: auto;
-    }
-
-    .transacgrid_data{
-        width: 100% !important;
-        height: 6% !important;
-        background-color: white !important;
-        margin-bottom: 2% !important;
-        padding: 2px !important;
-    }
-}
 
 .box_shadow {
     border: 1px solid #D0D0D0;
@@ -598,7 +575,7 @@ p.footer {
 }
 
 .block-content {
-    padding: 15px;
+    padding-bottom: 15px;
 }
 
 .block-group {
@@ -634,4 +611,18 @@ p.footer {
     .posRightBox div.block-group {
         padding: 10px !important;
     }
+}
+
+.table-scoller {
+    margin: 0;
+    overflow: auto;
+}
+
+.bordered-box {
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+
+.table th{
+    border: none !important;
 }

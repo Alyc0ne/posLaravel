@@ -1,4 +1,5 @@
 var transacSalesGoods = new setTransac();
+var NumGoods = 1;
 
 $(document).ready(function () {
     transacSalesGoods.init();
@@ -23,40 +24,35 @@ function setTransac() {
             return _t.Element;
         },
         genGrid: function () {
-            var Rightbox = $('<div class="row" style="height:100%!important;"></div>');
+            var Rightbox = $('<div class="row h_100"></div>');
             var gridStart = $('<div id="gridStart" style="width:100%;"></div>');
-            //gridStart.append("<div class='col-12 transacgrid_h box_shadow'><i class='m-r-10 mdi mdi-cart-outline text_white'></i><span class='text_white'>สินค้าในตะกร้า</span></div>");  
-            
-            var transac_d = "<div class='col-12 p_a5 transacgrid_d' id='transac-body'>";
+            var transac_d = "<div class='col-12 transacgrid_d' id='transac-body'>";
             transac_d += "<table class='table'>";
-            transac_d += "<thead style='background-color: #fafafa;'>";
-            transac_d += "<tr><th>Name</th><th>Qty</th><th>Price</th></tr>";
-            transac_d += "</thead>";
-            transac_d += "<tbody></tbody>";
+                transac_d += "<thead class='thead-dark'>";
+                    transac_d += "<tr>";
+                        transac_d += "<th scope='col' class='w_5'>#</th>";
+                        transac_d += "<th scope='col' class='w_60'>Product</th>";
+                        transac_d += "<th scope='col' class='w_10'>Quantity</th>";
+                        transac_d += "<th scope='col' class='w_20'>Price</th>";
+                    transac_d += "</tr>";
+                transac_d += "</thead>";
+                transac_d += "<tbody class='cart_detail'></tbody>";
             transac_d += "</table>";
             transac_d += "</div>";
 
             gridStart.append(transac_d);
 
-            var gridEnd = $('<div id="gridEnd" style="width:100%;border-top:solid 1px #e3e6f0; padding:4px;"></div>');
-            // var TotalSummary = "<div style='height:20%;width:100%'>";
-            // TotalSummary += "<input type='text' class='wh100 text-center p_a15' id='sub_total' name='sub_total' disabled>";
-            // TotalSummary += "</div>"
-            //var table = "<table style='width:100%;margin:7px;color:black;'>";
-            //table += "<tr style='width:100%;'><td class='transacgrid_f' style='width:30%;'>รวมเงิน</td><td style='width:65%;'><input type='text' class='w-100 float-right text-right m_r15' id='sub_total' name='sub_total' value='' disabled></td></tr>";
-            //table += "<tr style='width:100%;'><td class='transacgrid_f'>ส่วนลด</td><td><input type='text' class='w-100 float-right text-right _number m_r15' id='discount' name='discount' value=''></td></tr>";  
-            //table += "<tr style='width:100%;'><td class='transacgrid_f'>จำนวนเงินทั้งสิ้น</td><td><input type='text' class='w-100 float-right text-right m_r15' id='totalPrice' name='totalPrice' value='' disabled></td></tr>";  
-            //table += "</table>";
-            //gridEnd.append(TotalSummary);
+            var gridEnd = $('<div id="gridEnd"></div>');
+            var transac_f = "<div class='col-12'>";
+            transac_f += "<div class='w-100' style='border-top:solid 1px #e3e6f0;padding:4px;'>";
+                transac_f += "<button class='btn btn-success w_60 p-3 m_r10' id='SaveInvoice'>จ่ายชำระ (F1)</button>";
+                transac_f += "<button class='btn btn btn-warning w_38 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>";
+            transac_f += "</div>";
+            gridEnd.append(transac_f);
             
-            // gridEnd.append("<div class='w-100></div>");
-            // gridEnd.append("<button class='btn btn-success w_60 p-3 m_r10' id='SaveInvoice'>จ่ายชำระ (F1)</button>");
-            // gridEnd.append("<button class='btn btn btn-warning w_37 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>");
-            
-            // gridStart.append(gridEnd);
-            // Rightbox.append(gridStart);
-            // _t.Element.append(Rightbox);
-            //$("#Sell-PageLeft").append(LeftBox);
+            gridStart.append(gridEnd);
+            Rightbox.append(gridStart);
+            _t.Element.append(Rightbox);
         }
     };
     _t.gridControl = {
@@ -83,14 +79,15 @@ function setTransac() {
             }
         },
         addData: function (DataGoods,QtyBarcode) { //QtyBarcode : Number Of Goods
-            var _t_body = _t.Element.find('#transac-body');
+            var _t_body = _t.Element.find('#transac-body .cart_detail');
             var uid = RandomMath();
             var TotalAmnt = DataGoods.GoodsPrice * QtyBarcode;
             //var PricePerGoods = QtyBarcode > 1 ? "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2))) : "";
             var Goods = $('<tr id="GoodDetail" data-uid="' + uid + '"></tr>');
-            Goods.append('<td>' + DataGoods.GoodsName + '</td>');
-            Goods.append('<td>' + QtyBarcode + '</td>');
-            Goods.append('<td>' + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + '</td>');
+            Goods.append('<th scope="row" class="w_5">' + NumGoods + '</th>');
+            Goods.append('<td class="w_60">' + DataGoods.GoodsName + '</td>');
+            Goods.append('<td class="w_10 text-center">' + QtyBarcode + '</td>');
+            Goods.append('<td w_25>' + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + '</td>');
             // var PricePerGoods = "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2)));
             // var Goods = $('<div class="transacgrid_data box_shadow" id="GoodDetail" data-uid="' + uid + '"></div>');
             // Goods.append("<div class='w_60 float-left text-left text-ellipsis' alt = '" + DataGoods.GoodsName + "'><span>" + DataGoods.GoodsName + "</span></div>");
@@ -112,6 +109,7 @@ function setTransac() {
                 TotalAmnt : TotalAmnt
             });
             var sumPrice = QtyBarcode * DataGoods.GoodsPrice;
+            NumGoods++;
             return sumPrice;
         },
         clearData: function () {

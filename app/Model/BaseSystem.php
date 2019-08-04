@@ -22,6 +22,11 @@ class BaseSystem extends Model
         return $result = DB::table($table)->where($where)->first();
     }
 
+    public function sqlQueryOneRowOrderBy($table, $orderby)
+    {
+        return $result = DB::table($table)->orderby($orderby)->first();
+    }
+
     public function sqlQueryWithPagination($table, $where, $pagination)
     {
         return $result = DB::table($table)->where($where)-get();//->simplePaginate($pagination);

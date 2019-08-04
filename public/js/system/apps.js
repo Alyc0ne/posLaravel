@@ -407,15 +407,13 @@ function CheckPage() {
 //Goods
 function ShowModalGoods() {
     openloading(true);
-    if(checkDataTable('Unit')){
-        $("#GoodsNo").val(GenRunningNumber("Goods"));
-        GetDataJson('Unit','#GoodsUnit');
-        $("#GoodsModal").modal();
-        setTimeout(function(){
-            $("#GoodsBarcode").focus();
-            openloading(false);
-        },700);
-    }
+    $("#GoodsNo").val(GenRunningNumber("Goods"));
+    GetDataJson('Unit','#GoodsUnit');
+    $("#GoodsModal").modal();
+    setTimeout(function(){
+        $("#GoodsBarcode").focus();
+        openloading(false);
+    },700);
 }
 
 function SaveGoodsModal() {

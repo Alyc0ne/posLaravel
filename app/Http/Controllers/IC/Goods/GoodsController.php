@@ -17,7 +17,8 @@ class GoodsController extends Controller
 
     public function index()
     {
-        return view('IC/Goods/index');
+        $Goods = Goods::paginate(5);
+        return view('IC/Goods/index', compact('Goods','Goods'));
     }
 
     public function getNoGoodsBarcode()
