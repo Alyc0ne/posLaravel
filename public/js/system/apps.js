@@ -463,3 +463,18 @@ function SaveGoodsModal() {
         });
     }
 }
+
+$("#formGoods").on('submit', function (e) {
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "./BindSaveGoods",
+        data: $("#formGoods").serialize(),
+        success: function (response) {
+            
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});

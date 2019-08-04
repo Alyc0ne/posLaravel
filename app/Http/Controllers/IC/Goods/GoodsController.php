@@ -72,33 +72,38 @@ class GoodsController extends Controller
     public function BindSave(Request $request)
     {
         if ($request->ajax()) {
-            //try {
-                $Content = $request->all(); 
-                $IsBarcode = $Content->IsBarcode;
-                $model=array(
-                    "GoodsID"=>substr(uniqid(), 3), //10 หลัก
-                    "GoodsNo"=>$Conten->GoodsNo,
-                    "GoodsBarcode"=>boolval($IsBarcode) != false ? $Content->GoodsBarcode : null,
-                    "GoodsName"=>$Content->GoodsName,
-                    "GoodsQty"=>1,
-                    "GoodsPrice"=>$Content->GoodsPrice,
-                    "GoodsCost"=>$Content->GoodsPrice,
-                    "GoodsUnitID"=>"Null", //$unit['UnitID'],
-                    "GoodsUnitName"=>"Null", //$unit['UnitName'],
-                    "GoodsLocationID"=>"Null",
-                    "GoodsLocationName"=>"Null",
-                    "CreatedBy"=>null,
-                    "CreatedDate"=>date("Y-m-d H:i:s"),
-                    "ModifiedBy"=>null,
-                    "ModifiedDate"=>date("Y-m-d H:i:s"),
-                    "IsDelete"=>false,
-                    "IsBarcode"=>boolval($IsBarcode)
-                );
-                dd(model);
+            try {
+                $Goods = new Gooods();
+                $IsBarcode = boolval($request->input('IsBarcode'));
+                $Goods->GoodsID = substr(uniqid(), 3);
+                $Goods->GoodsNo = $request->input('GoodsNo');
+                $Goods->GoodsBarcode = $IsBarcode ? $request->input('GoodsBarcode') : null;
+                // $Content = $request->all(); 
+                // $IsBarcode = $request->get('IsBarcode');
+                // $model=array(
+                //     "GoodsID"=>substr(uniqid(), 3), //10 หลัก
+                //     "GoodsNo"=>$Conten->GoodsNo,
+                //     "GoodsBarcode"=>boolval($IsBarcode) != false ? $Content->GoodsBarcode : null,
+                //     "GoodsName"=>$Content->GoodsName,
+                //     "GoodsQty"=>1,
+                //     "GoodsPrice"=>$Content->GoodsPrice,
+                //     "GoodsCost"=>$Content->GoodsPrice,
+                //     "GoodsUnitID"=>"Null", //$unit['UnitID'],
+                //     "GoodsUnitName"=>"Null", //$unit['UnitName'],
+                //     "GoodsLocationID"=>"Null",
+                //     "GoodsLocationName"=>"Null",
+                //     "CreatedBy"=>null,
+                //     "CreatedDate"=>date("Y-m-d H:i:s"),
+                //     "ModifiedBy"=>null,
+                //     "ModifiedDate"=>date("Y-m-d H:i:s"),
+                //     "IsDelete"=>false,
+                //     "IsBarcode"=>boolval($IsBarcode)
+                // );
+                // dd(model);
                 //DB::table('smGoods')->insert($model);
-            /*} catch (\Throwable $th) {
+            } catch (\Throwable $th) {
                 //throw $th;
-            }*/
+            }
         }
     }
 }
