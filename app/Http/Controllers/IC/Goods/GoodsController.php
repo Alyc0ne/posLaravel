@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\IC\Goods;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Model\BaseSystem;
 use Illuminate\Support\Facades\DB;
@@ -73,11 +74,26 @@ class GoodsController extends Controller
     {
         if ($request->ajax()) {
             try {
-                $Goods = new Gooods();
+                $Goods = new Goods();
                 $IsBarcode = boolval($request->input('IsBarcode'));
                 $Goods->GoodsID = substr(uniqid(), 3);
                 $Goods->GoodsNo = $request->input('GoodsNo');
                 $Goods->GoodsBarcode = $IsBarcode ? $request->input('GoodsBarcode') : null;
+                $Goods->GoodsName = $request->input('GoodsName');
+                $Goods->GoodsQty = 1;
+                $Goods->GoodsPrice = $request->input('GoodsPrice');
+                $Goods->GoodsCost = $request->input('GoodsCost');
+                $Goods->GoodsUnitID = 'null';
+                $Goods->GoodsUnitName ='null';
+                $Goods->GoodsLocationID ='null';
+                $Goods->GoodsLocationName = 'null';
+                $Goods->CreatedBy = Auth::user()->UserID;
+                $Goods->CreatedDate = date("Y-m-d H:i:s");
+                $Goods->ModifiedBy = null;
+                $Goods->ModifiedDate = null;
+                $Goods->IsDelete = false;
+                $Goods->IsBarcode = boolval($IsBarcode);
+                $Goods->save();
                 // $Content = $request->all(); 
                 // $IsBarcode = $request->get('IsBarcode');
                 // $model=array(
