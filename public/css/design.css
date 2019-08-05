@@ -104,6 +104,7 @@ li {
   left: 0;
   right: 0;
   border-radius: 0;
+  background-color: #2C3E50;
 }
 
 .navbar-header .container-fluid {
@@ -204,4 +205,19 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   .nav-sidebar:not(.sidebar-expanded-mobile) {
       width: 50px;
   }
+}
+
+.btn-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  margin: 4px 2px;
+  font-size: 12px;
+  border-radius: 4px;
+  height: 32px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #292961;
+  background-color: #fff;
 }

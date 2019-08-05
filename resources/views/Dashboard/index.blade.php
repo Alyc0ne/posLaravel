@@ -27,13 +27,30 @@
 <header class="navbar navbar-header navbar-expand-sm js-navbar" data-qa-selector="navbar">
     <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
     <div class="container-fluid">
-        <div class="header-content">
+        <div class="header-content" style="width:1565px;">
             <div class="title-container">
 
     
             </div>
             <div class="navbar-collapse collapse">
-
+                <div class="dropdown">
+                    <button class="btn btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="p_r5">
+                                {{ Auth::user()->name }} 
+                            </div>
+                            <i class="fas fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
             </div>
 
         </div>
