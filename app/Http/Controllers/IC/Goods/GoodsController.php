@@ -72,6 +72,7 @@ class GoodsController extends Controller
 
     public function BindSave(Request $request)
     {
+        $IsSuccess = false;
         if ($request->ajax()) {
             try {
                 $Goods = new Goods();
@@ -83,42 +84,20 @@ class GoodsController extends Controller
                 $Goods->GoodsQty = 1;
                 $Goods->GoodsPrice = $request->input('GoodsPrice');
                 $Goods->GoodsCost = $request->input('GoodsCost');
-                $Goods->GoodsUnitID = 'null';
-                $Goods->GoodsUnitName ='null';
-                $Goods->GoodsLocationID ='null';
-                $Goods->GoodsLocationName = 'null';
-                $Goods->CreatedBy = Auth::user()->UserID;
-                $Goods->CreatedDate = date("Y-m-d H:i:s");
-                $Goods->ModifiedBy = null;
+                $ID = Auth::user()->UserID;
+                $Goods->CreatedByID = "1";
+                $Goods->ModifiedByID = null;
                 $Goods->ModifiedDate = null;
-                $Goods->IsDelete = false;
                 $Goods->IsBarcode = boolval($IsBarcode);
+                $Goods->IsDelete = false;
+                $Goods->IsInactive = false;
                 $Goods->save();
-                // $Content = $request->all(); 
-                // $IsBarcode = $request->get('IsBarcode');
-                // $model=array(
-                //     "GoodsID"=>substr(uniqid(), 3), //10 หลัก
-                //     "GoodsNo"=>$Conten->GoodsNo,
-                //     "GoodsBarcode"=>boolval($IsBarcode) != false ? $Content->GoodsBarcode : null,
-                //     "GoodsName"=>$Content->GoodsName,
-                //     "GoodsQty"=>1,
-                //     "GoodsPrice"=>$Content->GoodsPrice,
-                //     "GoodsCost"=>$Content->GoodsPrice,
-                //     "GoodsUnitID"=>"Null", //$unit['UnitID'],
-                //     "GoodsUnitName"=>"Null", //$unit['UnitName'],
-                //     "GoodsLocationID"=>"Null",
-                //     "GoodsLocationName"=>"Null",
-                //     "CreatedBy"=>null,
-                //     "CreatedDate"=>date("Y-m-d H:i:s"),
-                //     "ModifiedBy"=>null,
-                //     "ModifiedDate"=>date("Y-m-d H:i:s"),
-                //     "IsDelete"=>false,
-                //     "IsBarcode"=>boolval($IsBarcode)
-                // );
-                // dd(model);
-                //DB::table('smGoods')->insert($model);
+
+                $IsSuccess = true;
+                return Response()->json($IsSuccess);
             } catch (\Throwable $th) {
                 //throw $th;
+                return Response()->json($IsSuccess);
             }
         }
     }

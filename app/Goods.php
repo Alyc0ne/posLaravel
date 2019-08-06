@@ -8,5 +8,7 @@ class Goods extends Model
 {
     protected $table = 'smGoods';
     protected $primaryKey = 'GoodsID';
+    const CREATED_AT = 'CreatedDate';
+    const UPDATED_AT = 'ModifiedDate';
     
 }

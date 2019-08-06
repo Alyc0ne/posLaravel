@@ -15,6 +15,7 @@
                     <label for="GoodsNo" class="col-sm-2 col-form-label">รหัสสินค้า : </label>
                     <div class="frm-content col-sm-10">
                         <input type="text" class="form-control" id="GoodsNo" data-maxlength='10' disabled>
+                        <input type="hidden" class="form-control" id="tempGoodsNo" name="GoodsNo">
                     </div>
                 </div>
                 <div class="form-group row">

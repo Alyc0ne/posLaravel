@@ -419,6 +419,7 @@ function ShowModalGoods() {
     openloading(true);
     var result = GenData("Goods");
     $("#GoodsNo").val(result.RunningNumber);
+    $("#tempGoodsNo").val(result.RunningNumber);
     setUnitGoods(result.Unit[0]);
     $("#GoodsModal").modal();
     setTimeout(function(){
@@ -471,10 +472,20 @@ $("#formGoods").on('submit', function (e) {
         url: "./BindSaveGoods",
         data: $("#formGoods").serialize(),
         success: function (response) {
-            
+            console.log(response);
+            if (response) {
+                clearModal("#frmGoods");
+                $("#GoodsModal").modal('toggle');
+            }
         },
         error: function (error) {
             console.log(error);
         }
     });
 });
+
+$('#GoodsModal').on('hidden.bs.modal', function (e) {
+    console.log("kuy");
+});
+
+$('#GoodsModal').modal({backdrop: 'static', keyboard: false}) ;
