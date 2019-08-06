@@ -97,6 +97,7 @@ li {
   z-index: 1000;
   margin-bottom: 0;
   min-height: 40px;
+  max-height: 40px;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
   position: fixed;
@@ -220,4 +221,38 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   white-space: nowrap;
   color: #292961;
   background-color: #fff;
+}
+
+.navbar .navbar-collapse {
+  flex: 0 0 auto;
+  border-top: 0;
+  padding: 0;
+}
+
+.navbar .header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  min-height: 40px;
+  padding-left: 0;
+}
+
+.navbar .header-content .title-container {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  padding-top: 0;
+  overflow: visible;
+}
+
+.navbar .header-content .title {
+  padding-right: 0;
+  color: currentColor;
+  display: flex;
+  position: relative;
+  margin: 0;
+  font-size: 18px;
+  vertical-align: top;
+  white-space: nowrap;
 }

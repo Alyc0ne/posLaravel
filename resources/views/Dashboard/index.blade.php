@@ -27,10 +27,11 @@
 <header class="navbar navbar-header navbar-expand-sm js-navbar" data-qa-selector="navbar">
     <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
     <div class="container-fluid">
-        <div class="header-content" style="width:1565px;">
+        <div class="header-content">
             <div class="title-container">
-
-    
+                <div class='title'>
+                        <button class="btn btn-success"> Hello</button>
+                </div>
             </div>
             <div class="navbar-collapse collapse">
                 <div class="dropdown">
