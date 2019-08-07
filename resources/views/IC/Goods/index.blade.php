@@ -2,14 +2,25 @@
 @section('content')
 <script src="js/system/IC/Goods/Goods.js"></script>
 <div class="block-content">
+    <input type="hidden" id='SystemName' value='{{ $SystemName }}'>
     <div class='block-menu' style="border-bottom:none;">
         <div class='row'>
-                <div class="col-md-12 col-lg-6 d-flex"> 
+            <div class="col-md-12 col-lg-6 d-flex"> 
+               {{-- //// --}}
+            </div>
+            <div class="col-md-12 col-lg-6 d-inline-flex flex-wrap justify-content-lg-end">
+                <input type="text" class="form-control" id="frmGoods-Search" placeholder="Example input">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
                 </div>
-                <div class="col-md-12 col-lg-6 d-inline-flex flex-wrap justify-content-lg-end">
-                        {{--  --}}
-                    <button type="button" class="btn btn-success" onclick="javascript:ShowModalGoods();">New Goods</button>
-                </div>
+            </div>
         </div>
     </div>
     <div class="row m_a0 bordered-box table-scoller">
@@ -40,5 +51,5 @@
 </div>
 @endsection
 <div class='ExtendsModal'>
-    @extends('Shared.Modal.Goods.Goods')
+    @extends('Shared.Modal.Goods.AddGoods')
 </div>

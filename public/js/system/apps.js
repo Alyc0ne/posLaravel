@@ -1,6 +1,26 @@
 ﻿var navLink_Click = "";
 var path_link = "";
 
+$(document).ready(function () {
+    var SystemName = CheckSystemName();
+    genMenuRight(SystemName); 
+});
+
+function genMenuRight(SystemName) {
+    var contentHtml = "";
+
+    switch (SystemName) {
+        case "Goods":
+            contentHtml += "<button type='button' class='btn btn-success' onclick='javascript:ShowModalGoods();'>New Goods</button>"
+            break;
+    
+        default:
+            break;
+    }
+    
+    $("#menuRight").html(contentHtml);
+}
+
 function GetPath() {
     var pathArray = window.location.pathname.split('/');
     return pathArray;
@@ -488,4 +508,4 @@ $('#GoodsModal').on('hidden.bs.modal', function (e) {
     console.log("kuy");
 });
 
-$('#GoodsModal').modal({backdrop: 'static', keyboard: false}) ;
+// $('#GoodsModal').modal({backdrop: 'static', keyboard: false}) ;

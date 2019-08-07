@@ -256,3 +256,35 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   vertical-align: top;
   white-space: nowrap;
 }
+
+.dropdown-Profile{
+  position: absolute;
+  top: 100%;
+  left: auto;
+  right: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: .5rem 0;
+  margin: .125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+}
+
+.dropdown-search {
+  padding: 6px 8px 6px 10px;
+  background-color: #fff;
+  color: #2e2e2e;
+  font-size: 14px;
+  text-align: left;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  white-space: nowrap;
+}

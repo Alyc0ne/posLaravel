@@ -19,7 +19,9 @@ class GoodsController extends Controller
     public function index()
     {
         $Goods = Goods::paginate(10);
-        return view('IC/Goods/index', compact('Goods','Goods'));
+        $SystemName = "Goods";
+
+        return view('IC/Goods/index', compact('Goods','SystemName'));
     }
 
     public function getNoGoodsBarcode()
