@@ -30,6 +30,12 @@ function CheckSystemName() {
     return $("#SystemName").val();
 }
 
+$(document).ready(function () {
+   var getHeight = $(window).height();
+   //Set posRightBox
+   $(".posRightBox").css('height', (getHeight - 100) + 'px');
+});
+
 $(document).on("keypress", "._number", function(e) {
     // data length validate
     // Length | Num | Decimal | Comma | Dot
@@ -251,9 +257,20 @@ function GenData(system) {
         contentType: 'json',
         data: JSON.stringify({System: "Goods"}),
         contentType: 'application/json; charset=utf-8',
-        async: false,
+        //async: false,
         success: function(e) {
-            Running = e;
+            Running = e.RunningNumber;
+            switch (system) {
+                case "Goods":
+                    $("#GoodsNo").val(Running);
+                    $("#tempGoodsNo").val(Running);
+                    $("#GoodsName").focus();
+                    $("#GoodsModal").modal();
+                    break;
+                default:
+                    break;
+            }
+            openloading(false);
         },
         error: function(e) {
             //openloading(false);
@@ -437,15 +454,8 @@ function CheckPage() {
 //Goods
 function ShowModalGoods() {
     openloading(true);
-    var result = GenData("Goods");
-    $("#GoodsNo").val(result.RunningNumber);
-    $("#tempGoodsNo").val(result.RunningNumber);
-    setUnitGoods(result.Unit[0]);
-    $("#GoodsModal").modal();
-    setTimeout(function(){
-        $("#GoodsName").focus();
-        openloading(false);
-    },700);
+    GenData("Goods");
+    //setUnitGoods(result.Unit[0]);
 }
 
 function SaveGoodsModal() {

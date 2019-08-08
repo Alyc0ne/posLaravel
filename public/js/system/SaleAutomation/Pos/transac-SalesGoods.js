@@ -42,11 +42,14 @@ function setTransac() {
 
             gridStart.append(transac_d);
 
-            var gridEnd = $('<div id="gridEnd"></div>');
-            var transac_f = "<div class='col-12'>";
-            transac_f += "<div class='w-100' style='border-top:solid 1px #e3e6f0;padding:4px;'>";
-                transac_f += "<button class='btn btn-success w_60 p-3 m_r10' id='SaveInvoice'>จ่ายชำระ (F1)</button>";
-                transac_f += "<button class='btn btn btn-warning w_38 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>";
+            var gridEnd = $('<div id="gridEnd" class="row m_lr0"></div>');
+            var transac_f = "<div class='col-8 p_r0'>";
+            //transac_f += "<div class='w-100' style='border-top:solid 1px #e3e6f0;padding:4px;'>";
+                transac_f += "<button class='btn btn-success w_100 p-3' id='SaveInvoice'>จ่ายชำระ (F1)</button>";
+                
+            transac_f += "</div>";
+            transac_f += "<div class='col-4 p_l5'>";
+                transac_f += "<button class='btn btn btn-warning w_100 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>";
             transac_f += "</div>";
             gridEnd.append(transac_f);
             

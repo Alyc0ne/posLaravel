@@ -9,15 +9,21 @@
                {{-- //// --}}
             </div>
             <div class="col-md-12 col-lg-6 d-inline-flex flex-wrap justify-content-lg-end">
-                <input type="text" class="form-control" id="frmGoods-Search" placeholder="Example input">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                <div class="col-9 p_lr0">
+                    <input type="text" class="form-control" id="frmGoods-Search" placeholder="Not Ready" disabled>
+                </div>
+                
+                <div class="col-3 p_lr0">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle w_100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                            Filter Search Button
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <select name="" id="">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

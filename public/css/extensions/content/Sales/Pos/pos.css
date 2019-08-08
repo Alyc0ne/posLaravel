@@ -1,5 +1,11 @@
 .posRightBox{
-    height: 850px;
+    /* height: 850px; */
+}
+
+@media screen and ( min-height: 700px ) { 
+    .h_detail_pos{
+        height: 780px !important;
+    }
 }
 
 @media only screen and (max-height:1980px) and (min-width: 1601px){
