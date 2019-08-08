@@ -63,8 +63,8 @@ class BaseController extends Controller
             
             switch ($System) {
                 case 'Goods':
-                    $UnitData = $BaseSystem->sqlQuery('smUnit', $defaultWhere);
-                    $Unit = json_decode($UnitData);
+                    // $UnitData = $BaseSystem->sqlQuery('smGoods', $defaultWhere);
+                    // $Unit = json_decode($UnitData);
                     //array_push($Result, $Unit[0]);
                     break;
                 
@@ -73,7 +73,7 @@ class BaseController extends Controller
             }
             $Result = array(
                 'RunningNumber' => $RunningNumber,
-                'Unit' => $Unit
+                // 'Unit' => $Unit
             );
             return Response()->json($Result);
         }

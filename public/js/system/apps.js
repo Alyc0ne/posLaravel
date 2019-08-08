@@ -504,6 +504,7 @@ $("#formGoods").on('submit', function (e) {
         success: function (response) {
             console.log(response);
             if (response) {
+                refreshListData('Goods');
                 clearModal("#frmGoods");
                 $("#GoodsModal").modal('toggle');
             }
@@ -514,8 +515,40 @@ $("#formGoods").on('submit', function (e) {
     });
 });
 
+function refreshListData(system) {
+    var urlPath = "";
+    switch (system) {
+        case "Goods":
+            urlPath = "refreshGoods";
+            break;
+    
+        default:
+            break;
+    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: urlPath,
+        datatype: "json",
+        traditional: true,
+        success: function (e) {
+            if (e != null) {
+                $(".contentGoods").html(e);
+            }
+        },
+        error: function (e) {
+            openloading(false);
+        }
+    });
+}
+
 $('#GoodsModal').on('hidden.bs.modal', function (e) {
     console.log("kuy");
 });
 
 // $('#GoodsModal').modal({backdrop: 'static', keyboard: false}) ;
+

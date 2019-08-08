@@ -72,6 +72,14 @@ class GoodsController extends Controller
         }
     }
 
+    public function refreshGoods(Request $request)
+    {
+        if ($request->ajax()) {
+            $Goods = Goods::paginate(10);
+            return View::make("IC/Goods/GoodsConten", ["Goods" => $Goods]);
+        }
+    }
+
     public function BindSave(Request $request)
     {
         $IsSuccess = false;

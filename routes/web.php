@@ -35,14 +35,4 @@ Route::post('/GenData', 'BaseController@GenData');
 
 Route::post('/BindSaveGoods', 'IC\Goods\GoodsController@BindSave');
 
-// Route::post('/GetNoGoodsBarcode', function ()
-// {
-//     $Goods = Goods::paginate(5);
-//     return View::make('Shared.Modal.Goods.NoGoodsBarcode')->with('Goods', $Goods);
-// });
-
-// Route::post('/PaginateGodsNoBarcode', function ()
-// {
-//     $Goods = Goods::paginate(5);
-//     return View::make('Shared.Modal.Goods.NoGoodsBarcodeContent')->with('Goods')->render();
-// });
+Route::post('refreshGoods', 'IC\Goods\GoodsController@refreshGoods');
