@@ -76,7 +76,8 @@ class GoodsController extends Controller
     {
         if ($request->ajax()) {
             $Goods = Goods::paginate(10);
-            return View::make("IC/Goods/GoodsConten", ["Goods" => $Goods]);
+            return view('IC.Goods.GoodsContent', compact('Goods'))->render();
+            //return View::make("IC.Goods.GoodsContent", ["Goods" => $Goods]);
         }
     }
 

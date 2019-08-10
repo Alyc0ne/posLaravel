@@ -368,7 +368,7 @@ function getFirstPath() {
 
 function clearModal(name) {
     var ID = $(name);
-    // ID.on('hidden.bs.modal', function(e) {
+    ID.on('hidden.bs.modal', function(e) {
         $(this)
             .find("input,textarea,select")
             .val('')
@@ -376,7 +376,7 @@ function clearModal(name) {
             .find("input[type=checkbox], input[type=radio]")
             .prop("checked", "")
             .end();
-    // })
+    })
 }
 
 function PathLink(system) {
@@ -497,6 +497,7 @@ function SaveGoodsModal() {
 
 $("#formGoods").on('submit', function (e) {
     e.preventDefault();
+    openloading(true);
     $.ajax({
         type: "POST",
         url: "./BindSaveGoods",
@@ -505,8 +506,8 @@ $("#formGoods").on('submit', function (e) {
             console.log(response);
             if (response) {
                 refreshListData('Goods');
-                clearModal("#frmGoods");
                 $("#GoodsModal").modal('toggle');
+                clearModal("#frmGoods");
             }
         },
         error: function (error) {
@@ -538,6 +539,7 @@ function refreshListData(system) {
         success: function (e) {
             if (e != null) {
                 $(".contentGoods").html(e);
+                openloading(false);
             }
         },
         error: function (e) {

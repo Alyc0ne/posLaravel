@@ -13,7 +13,7 @@
                     <input type="text" class="form-control" id="frmGoods-Search" placeholder="Not Ready" disabled>
                 </div>
                 
-                <div class="col-3 p_lr0">
+                <div class="col-3 p_r0">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle w_100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
                             Filter Search Button
