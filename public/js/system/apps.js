@@ -507,7 +507,7 @@ $("#formGoods").on('submit', function (e) {
             if (response) {
                 refreshListData('Goods');
                 $("#GoodsModal").modal('toggle');
-                clearModal("#frmGoods");
+                //clearModal("#frmGoods");
             }
         },
         error: function (error) {
@@ -549,8 +549,18 @@ function refreshListData(system) {
 }
 
 $('#GoodsModal').on('hidden.bs.modal', function (e) {
-    console.log("kuy");
+    //console.log("kuy");
 });
 
 // $('#GoodsModal').modal({backdrop: 'static', keyboard: false}) ;
+
+$('#GoodsModal').on('hidden.bs.modal', function (e) {
+    $(this)
+      .find("input,textarea,select")
+         .val('')
+         .end()
+      .find("input[type=checkbox], input[type=radio]")
+         .prop("checked", "")
+         .end();
+  })
 

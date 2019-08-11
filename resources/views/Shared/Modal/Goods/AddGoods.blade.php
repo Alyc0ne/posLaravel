@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="GoodsBarcode" class="col-sm-2 col-form-label require"><span class='text-red'></span>Barcode : </label>
+                    <label for="GoodsBarcode" class="col-sm-2 col-form-label require"><span class='text-red'> </span>Barcode : </label>
                     <div class="col-sm-10">
                         <div class="custom-control custom-checkbox mr-sm-2">
                             <input type="checkbox" class="custom-control-input" id="IsBarcode">
@@ -30,21 +30,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="GoodsName" class="col-sm-2 col-form-label require"><span class='text-red'>*</span>ชื่อสินค้า : </label>
+                    <label for="GoodsName" class="col-sm-2 col-form-label require"><span class='text-red'>* </span>ชื่อสินค้า : </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="GoodsName" name="GoodsName" data-maxlength='250' autofocus>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="GoodsPrice" class="col-sm-2 col-form-label require"><span class='text-red'>*</span>ราคาสินค้า : </label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control _number" id="GoodsPrice" name="GoodsPrice">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="GoodsCost" class="col-sm-2 col-form-label">ต้นทุนสินค้า : </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control _number" id="GoodsCost" name="GoodsCost">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="GoodsPrice" class="col-sm-2 col-form-label require"><span class='text-red'>* </span>ราคาสินค้า : </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control _number" id="GoodsPrice" name="GoodsPrice">
                     </div>
                 </div>
                 {{-- <div class="form-group row">

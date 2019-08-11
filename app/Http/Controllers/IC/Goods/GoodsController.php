@@ -94,7 +94,7 @@ class GoodsController extends Controller
                 $Goods->GoodsName = $request->input('GoodsName');
                 $Goods->GoodsQty = 1;
                 $Goods->GoodsPrice = $request->input('GoodsPrice');
-                $Goods->GoodsCost = $request->input('GoodsCost');
+                $Goods->GoodsCost = $request->input('GoodsCost') != null ? $request->input('GoodsCost') : 0;
                 $ID = Auth::user()->UserID;
                 $Goods->CreatedByID = "1";
                 $Goods->ModifiedByID = null;
