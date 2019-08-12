@@ -14,7 +14,7 @@ class CreateGoodsTable extends Migration
     public function up()
     {
         Schema::create('smGoods', function (Blueprint $table) {
-            $table->string('GoodsID',50);
+            $table->string('GoodsID',50)->primary();
             $table->string('GoodsNo', 50)->unique();
             $table->string('GoodsBarcode', 50)->nullable();
             $table->string('GoodsName', 255);

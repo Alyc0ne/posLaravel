@@ -32,19 +32,19 @@
                 <div class="form-group row">
                     <label for="GoodsName" class="col-sm-2 col-form-label require"><span class='text-red'>* </span>ชื่อสินค้า : </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="GoodsName" name="GoodsName" data-maxlength='250' autofocus>
+                        <input type="text" class="form-control" id="GoodsName" name="GoodsName" data-maxlength='250' autofocus autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="GoodsCost" class="col-sm-2 col-form-label">ต้นทุนสินค้า : </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control _number" id="GoodsCost" name="GoodsCost">
+                        <input type="text" class="form-control _number" id="GoodsCost" name="GoodsCost" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="GoodsPrice" class="col-sm-2 col-form-label require"><span class='text-red'>* </span>ราคาสินค้า : </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control _number" id="GoodsPrice" name="GoodsPrice">
+                        <input type="text" class="form-control _number" id="GoodsPrice" name="GoodsPrice" autocomplete="off">
                     </div>
                 </div>
                 {{-- <div class="form-group row">

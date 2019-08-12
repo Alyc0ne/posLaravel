@@ -18,7 +18,7 @@ class GoodsController extends Controller
 
     public function index()
     {
-        $Goods = Goods::paginate(10);
+        $Goods = Goods::paginate(8);
         $SystemName = "Goods";
 
         return view('IC/Goods/index', compact('Goods','SystemName'));
@@ -27,7 +27,7 @@ class GoodsController extends Controller
     public function getNoGoodsBarcode()
     {
         $GoodsModel = new Goods();
-        $Goods = $GoodsModel::paginate(10);
+        $Goods = $GoodsModel::paginate(8);
         return view('Shared.Modal.Goods.NoGoodsBarcode', compact('Goods','GoodsPaginate'))->render();
         //view('Shared.Modal.Goods.NoGoodsBarcode', compact('Goods'));
 
@@ -75,7 +75,7 @@ class GoodsController extends Controller
     public function refreshGoods(Request $request)
     {
         if ($request->ajax()) {
-            $Goods = Goods::paginate(10);
+            $Goods = Goods::paginate(8);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
             //return View::make("IC.Goods.GoodsContent", ["Goods" => $Goods]);
         }

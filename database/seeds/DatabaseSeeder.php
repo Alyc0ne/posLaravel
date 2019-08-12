@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->call('smUserTableSeeder');
-        $this->command->info('smUser Seeded!');
+        $this->call('smUnitTableSeeder');
+        $this->command->info('Seeded!');
     }
 }
 
@@ -31,6 +32,23 @@ class smUserTableSeeder extends Seeder
             'IsDelete' => false,
             'IsInactive' => false,
             'created_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+}
+
+class smUnitTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('smUnit')->delete();
+        DB::table('smUnit')->insert([
+            'UnitID' => substr(uniqid(), 3),
+            'UnitNo' => "UN".date("Ym")."-01",
+            'UnitName' => "ชิ้น",
+            'CreatedByID' => 1, //1 = admin
+            'CreatedDate' => date('Y-m-d H:i:s'),
+            'IsDelete' => false,
+            'IsInactive' => false
         ]);
     }
 }
