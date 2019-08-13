@@ -93,10 +93,9 @@
                 <li>
                     <a href="{{ route('pos') }}">POS</a>
                 </li>
-                <li>
-                        <a href="{{ route('goods') }}">Goods</a>
-                    {{-- <a href="#" aria-expanded='false'>IC</a> --}}
-                    <ul> <!-- style="display: none;" -->
+                <li>{{-- <a href="{{ route('goods') }}">Goods</a> --}}
+                    <a href="#" aria-expanded='false'>IC</a>
+                    <ul class='showUl show-IC'> <!-- style="display: none;" -->
                         <li>
                             <a href="">Unit</a>
                         </li>
@@ -134,3 +133,9 @@
 </div>
 </body>
 </html>
+
+<script>
+$(document).ready(function() {
+    $('.unitGoods').select2();
+});
+</script>

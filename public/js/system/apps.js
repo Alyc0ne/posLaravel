@@ -259,6 +259,7 @@ function GenData(system) {
         contentType: 'application/json; charset=utf-8',
         //async: false,
         success: function(e) {
+            console.log(e);
             Running = e.RunningNumber;
             switch (system) {
                 case "Goods":
@@ -266,6 +267,7 @@ function GenData(system) {
                     $("#tempGoodsNo").val(Running);
                     $("#GoodsName").focus();
                     $("#GoodsModal").modal();
+                    SetDataSelect2(e.Unit, "unitGoods")
                     break;
                 default:
                     break;
@@ -300,10 +302,10 @@ function GetDataJson(system, idSelect2 = null) {
 }
 
 function setUnitGoods(Unit) {
-    SetDataSelect2(Unit, "#GoodsUnit")
+    SetDataSelect2(Unit, "unitGoods")
 }
 
-function SetDataSelect2(arr, name) {
+function SetDataSelect2(arr, className) {
     var data = [];
     var item = {};
     for (var i = 0; i < arr.length; i++) {
@@ -314,8 +316,8 @@ function SetDataSelect2(arr, name) {
         data.push(item);
     }
 
-    var ID = $(name);
-    ID.select2({
+    var className = $('.' + className);
+    className.select2({
         data: data
     })
 }

@@ -62,12 +62,10 @@ class GoodsController extends Controller
             $Content = json_decode($request->getContent());
             $GoodsBarcode = $Content->GoodsBarcode;
             $BaseSystem = new BaseSystem();
-            //$where = $BaseSystem->defaultWhere();
-            $where = array('IsDelete' => false);
+            $where = $BaseSystem->defaultWhere();
             $where = array_merge($where, array('GoodsBarcode' => $GoodsBarcode));
             $fields = array('GoodsID','GoodsName','GoodsPrice');
             $Goods = $BaseSystem->sqlQuerySomeFields('smGoods', $where, $fields, true);
-            //DB::table('smGoods')->select('GoodsID','GoodsName','GoodsPrice')->where($where)->first();
             return Response()->json($Goods);
         }
     }
@@ -75,9 +73,20 @@ class GoodsController extends Controller
     public function refreshGoods(Request $request)
     {
         if ($request->ajax()) {
-            $Goods = Goods::paginate(8);
+            $BaseSystem = new BaseSystem();
+            $where = $BaseSystem->defaultWhere();
+            $Goods = Goods::where($where)::paginate(8);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
-            //return View::make("IC.Goods.GoodsContent", ["Goods" => $Goods]);
+        }
+    }
+
+    public function fetchGoods(Request $request)
+    {
+        if ($request->ajax()) {
+            $BaseSystem = new BaseSystem();
+            $where = $BaseSystem->defaultWhere();
+            $Goods = Goods::where($where)::paginate(8);
+            return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
     }
 

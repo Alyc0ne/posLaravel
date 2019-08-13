@@ -47,13 +47,13 @@
                         <input type="text" class="form-control _number" id="GoodsPrice" name="GoodsPrice" autocomplete="off">
                     </div>
                 </div>
-                {{-- <div class="form-group row">
+                <div class="form-group row">
                     <label for="GoodsUnit" class="col-sm-2 col-form-label">หน่วยนับ : </label>
                     <div class="col-sm-10">
-                        <select class='js-example-basic-single' name='GoodsUnit' id='GoodsUnit'>
+                        <select class="unitGoods" name="unitGoods" style="width: 50%">
                         </select>
                     </div>
-                </div> --}}
+                </div>
                 <input type='hidden' id='GoodsUnitID' name='GoodsUnitID'>
             </div>
         </div>
