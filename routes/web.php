@@ -23,6 +23,8 @@ Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('pos', 'SaleAutomation\Pos\PosController@index')->name('pos');
 
+Route::get('unit', 'IC\Unit\UnitController@index')->name('unit');
+
 Route::get('goods', 'IC\Goods\GoodsController@index')->name('goods');
 
 //Route::get('/GetNoGoodsBarcode', 'IC\Goods\GoodsController@GetNoGoodsBarcode');

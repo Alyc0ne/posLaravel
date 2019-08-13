@@ -291,6 +291,26 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   white-space: nowrap;
 }
 
-.showUl {
+ul {
+  margin-top: 0;
+}
+.sidebar-top-level-items>li.active{
+    background: rgba(0,0,0,0.04);
+}
 
+.sidebar-sub-level-items {
+  display: block;
+}
+
+.sub-menuShow {
+  display: block;
+}
+
+.sidebar-sub-level-items>li a{
+  padding: 8px 16px 8px 40px;
+}
+
+
+.sidebar-a-focus {
+  background: rgba(0,0,0,0.04);
 }

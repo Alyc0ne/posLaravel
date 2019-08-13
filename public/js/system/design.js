@@ -2,9 +2,14 @@ $(document).ready(function () {
     $(".sidebar-top-level-items>li").each(function() {
         var navItem = $(this);
         if (navItem.find("a").attr("href") == location.href) {
-          navItem.addClass("active");
+            navItem.addClass("active");
         }
     });
+});
+
+$(document).on('click', '.showMenu', function () {
+    $(this).closest('li').addClass('active');
+    $(".sidebar-sub-level-items").removeAttr("style")
 });
 
 $(document).on("click", ".toggle-mobile-nav", function () {

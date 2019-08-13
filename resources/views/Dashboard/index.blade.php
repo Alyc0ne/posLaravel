@@ -86,16 +86,19 @@
             <ul class="sidebar-top-level-items">
                 <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a> 
-                    {{-- {{ route('Dashboard') }}
-                    {{ route('Unit') }}
-                    {{ route('Goods') }} --}}
                 </li>
                 <li>
                     <a href="{{ route('pos') }}">POS</a>
                 </li>
-                <li>{{-- <a href="{{ route('goods') }}">Goods</a> --}}
-                    <a href="#" aria-expanded='false'>IC</a>
-                    <ul class='showUl show-IC'> <!-- style="display: none;" -->
+                <li>
+                    <a href="{{ route('unit') }}">Unit</a>
+                </li>
+                <li>
+                    <a href="{{ route('goods') }}">Goods</a>
+                </li>
+                {{-- <li>
+                    <a href="#" class='showMenu'>IC</a>
+                    <ul class="sidebar-sub-level-items">
                         <li>
                             <a href="">Unit</a>
                         </li>
@@ -103,7 +106,7 @@
                             <a href="{{ route('goods') }}">Goods</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>
