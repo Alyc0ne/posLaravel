@@ -449,25 +449,27 @@ function SaveGoodsModal() {
     }
 }
 
-$("#formGoods").on('submit', function (e) {
+$(document).on('submit', "#formGoods", function (e) {
     e.preventDefault();
-    openloading(true);
-    $.ajax({
-        type: "POST",
-        url: "./BindSaveGoods",
-        data: $("#formGoods").serialize(),
-        success: function (response) {
-            console.log(response);
-            if (response) {
-                refreshListData('Goods');
-                $("#GoodsModal").modal('toggle');
-                clearModal("#GoodsModal");
+    if (bindValidate("#frmGoods")){
+        openloading(true);
+        $.ajax({
+            type: "POST",
+            url: "./BindSaveGoods",
+            data: $("#formGoods").serialize(),
+            success: function (response) {
+                console.log(response);
+                if (response) {
+                    refreshListData('Goods');
+                    $("#GoodsModal").modal('toggle');
+                    clearModal("#GoodsModal");
+                }
+            },
+            error: function (error) {
+                console.log(error);
             }
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
+        });
+    }
 });
 
 //Unit

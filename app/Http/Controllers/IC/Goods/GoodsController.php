@@ -96,6 +96,12 @@ class GoodsController extends Controller
         $IsSuccess = false;
         if ($request->ajax()) {
             try {
+                $BaseSystem = new BaseSystem();
+                $UnitID = $request->input('unitGoods');
+                $where = $BaseSystem->defaultWhere();
+                $fields = array('UnitName');
+                $UnitData = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fields, true);
+
                 $Goods = new Goods();
                 $IsBarcode = boolval($request->input('IsBarcode'));
                 $Goods->GoodsID = substr(uniqid(), 3);
@@ -105,6 +111,8 @@ class GoodsController extends Controller
                 $Goods->GoodsQty = 1;
                 $Goods->GoodsPrice = $request->input('GoodsPrice');
                 $Goods->GoodsCost = $request->input('GoodsCost') != null ? $request->input('GoodsCost') : 0;
+                $Goods->GoodsUnitID = $UnitID;
+                $Goods->GoodsUnitName = $UnitData->UnitName;
                 $ID = Auth::user()->UserID;
                 $Goods->CreatedByID = "1";
                 $Goods->ModifiedByID = null;

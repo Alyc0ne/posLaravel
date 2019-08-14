@@ -21,9 +21,9 @@ class CreateGoodsTable extends Migration
             $table->decimal('GoodsQty', 8, 2);
             $table->decimal('GoodsPrice', 8, 2);
             $table->decimal('GoodsCost', 8, 2);
-            $table->integer('GoodsUnitID')->nullable();
+            $table->string('GoodsUnitID')->nullable();
             $table->string('GoodsUnitName', 255)->nullable();
-            $table->integer('GoodsLocationID')->nullable();
+            $table->string('GoodsLocationID')->nullable();
             $table->string('GoodsLocationName', 255)->nullable();
             $table->string('CreatedByID', 20);
             $table->dateTime('CreatedDate');
