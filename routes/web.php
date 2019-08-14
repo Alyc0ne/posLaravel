@@ -23,8 +23,6 @@ Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('pos', 'SaleAutomation\Pos\PosController@index')->name('pos');
 
-Route::get('unit', 'IC\Unit\UnitController@index')->name('unit');
-
 Route::get('goods', 'IC\Goods\GoodsController@index')->name('goods');
 
 //Route::get('/GetNoGoodsBarcode', 'IC\Goods\GoodsController@GetNoGoodsBarcode');
@@ -40,3 +38,15 @@ Route::post('/BindSaveGoods', 'IC\Goods\GoodsController@BindSave');
 Route::post('refreshGoods', 'IC\Goods\GoodsController@refreshGoods');
 
 Route::post('fetchGoods', 'IC\Goods\GoodsController@fetchGoods');
+
+//Unit
+Route::get('unit', 'IC\Unit\UnitController@index')->name('unit');
+Route::post('/BindSaveUnit', 'IC\Unit\UnitController@BindSave');
+Route::post('refreshUnit', 'IC\Unit\UnitController@refreshUnit');
+
+//Route::prefix('unit')->group(function () {
+    //Route::get('', 'IC\Unit\UnitController@index')->name('unit');
+    //Route::post('/BindSaveUnit', 'IC\Unit\UnitController@BindSave');
+    //Route::put('{id}', 'productController@update');
+    //Route::delete('{id}', 'productController@destroy');
+//});

@@ -13,7 +13,9 @@ function genMenuRight(SystemName) {
         case "Goods":
             contentHtml += "<button type='button' class='btn btn-success' onclick='javascript:ShowModalGoods();'>New Goods</button>"
             break;
-    
+        case "Unit":
+            contentHtml += "<button type='button' class='btn btn-success' onclick='javascript:ShowModalUnit();'>New Unit</button>"
+            break;
         default:
             break;
     }
@@ -129,19 +131,8 @@ document.addEventListener('keyup', function (e) {
 
 $(document).on("keydown",function(e){
     if(e.keyCode===122) return false
-    
     //Stop FullScreen (F12)
 })
-
-// $(document).on("click", ".nav-link", function () {
-//     openloading(true);
-//     var ID = this.getAttribute('aria-controls');
-//     setTimeout(function(){ 
-//         $("#right-page #v-pills-tabContent").find("div.active").removeClass("show active");
-//         $("#right-page #v-pills-tabContent").find("div#" + ID).addClass("show active");
-//         openloading(false);
-//     }, 1000);         
-// });
 
 $(document).on("blur", "._number", function(e) {
     var t = $(this);
@@ -255,11 +246,10 @@ function GenData(system) {
         url: "./GenData",
         dataType:'json',
         contentType: 'json',
-        data: JSON.stringify({System: "Goods"}),
+        data: JSON.stringify({System: system}),
         contentType: 'application/json; charset=utf-8',
         //async: false,
         success: function(e) {
-            console.log(e);
             Running = e.RunningNumber;
             switch (system) {
                 case "Goods":
@@ -268,6 +258,12 @@ function GenData(system) {
                     $("#GoodsName").focus();
                     $("#GoodsModal").modal();
                     SetDataSelect2(e.Unit, "unitGoods")
+                    break;
+                case "Unit":
+                    $("#UnitNo").val(Running);
+                    $("#tempUnitNo").val(Running);
+                    $("#UnitName").focus();
+                    $("#UnitModal").modal();
                     break;
                 default:
                     break;
@@ -279,30 +275,6 @@ function GenData(system) {
         }
     });
     return Running;
-}
-
-function GetDataJson(system, idSelect2 = null) {
-    var Result = "";
-    $.ajax({
-        type: 'POST',
-        url: base_url + "Base/BaseController/GetDataJson",
-        data: { "System": system },
-        dataType: "json",
-        traditional: true,
-        async: false,
-        success: function(e) {
-            //Result = JSON.parse(e);
-            if (idSelect2 != null) { SetDataSelect2(e, idSelect2) }
-        },
-        error: function(e) {
-            //openloading(false);
-        }
-    });
-    return Result;
-}
-
-function setUnitGoods(Unit) {
-    SetDataSelect2(Unit, "unitGoods")
 }
 
 function SetDataSelect2(arr, className) {
@@ -322,40 +294,6 @@ function SetDataSelect2(arr, className) {
     })
 }
 
-function checkDataTable(system) {
-    var result = false;
-    $.ajax({
-        type: 'POST',
-        url: base_url + "Base/BaseController/checkDataTable",
-        data: {
-            "System": system
-        },
-        datatype: "json",
-        traditional: true,
-        async: false,
-        success: function(e) {
-            var txtAlert = "";
-            if (e > 0) {
-                result = true;
-            } else {
-                switch (system) {
-                    case "Unit":
-                        txtAlert = "<img src='" + base_url + "extensions/images/icon/trolley.png'><h3 class='text-center text-red'>กรุณากำหนดหน่วยนับสินค้าก่อน!</h3>";
-                    break;
-                    default:
-                        break;
-                }
-                AlertModal(txtAlert);
-                openloading(false);
-            }
-        },
-        error: function(e) {
-            openloading(false);
-        }
-    });
-    return result;
-}
-
 function getFirstPath() {
     var first = $(location).attr('pathname');
 
@@ -366,44 +304,6 @@ function getFirstPath() {
     first = first.split("/")[1];
 
     return first;
-}
-
-function clearModal(name) {
-    var ID = $(name);
-    ID.on('hidden.bs.modal', function(e) {
-        $(this)
-            .find("input,textarea,select")
-            .val('')
-            .end()
-            .find("input[type=checkbox], input[type=radio]")
-            .prop("checked", "")
-            .end();
-    })
-}
-
-function PathLink(system) {
-    var url = "";
-    switch (system) {
-        case "Goods":
-            url = "Goods/GoodsController/index";
-            break;
-    }
-    $.ajax({
-        type: 'POST',
-        url: base_url + url,
-        data: {
-            "System": system
-        },
-        datatype: "json",
-        traditional: true,
-        async: false,
-        success: function(e) {
-            console.log("KIKI");
-        },
-        error: function(e) {
-
-        }
-    })
 }
 
 function RandomMath() {
@@ -450,14 +350,66 @@ function CheckPage() {
     return $("#PageSystem").val();
 }
 
+function refreshListData(system) {
+    var urlPath = "";
+    var classContent = "";
+    switch (system) {
+        case "Goods":
+            urlPath = "refreshGoods";classContent = "contentGoods";
+            break;
+        case "Unit":
+            urlPath = "refreshUnit";classContent = "contentUnit";
+            break;
+        default:
+            break;
+    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: urlPath,
+        datatype: "json",
+        traditional: true,
+        success: function (e) {
+            if (e != null) {
+                $("." + classContent).html(e);
+                openloading(false);
+            }
+        },
+        error: function (e) {
+            openloading(false);
+        }
+    });
+}
 
 /*############################# Modal #############################*/
+$(document).on('shown.bs.modal', '.modalInsert', function() {
+    $('.inputFocus').trigger('focus');
+});
+
+$(document).on('hidden.bs.modal', '.modalInsert', function (e) {
+    var ID = $(this).attr('id');
+    clearModal(ID);
+});
+
+function clearModal(name) {
+    $("#" + name)
+        .find("input,textarea,select")
+            .val('')
+            .end()
+        .find("input[type=checkbox], input[type=radio]")
+            .prop("checked", "")
+            .end();
+}
+
 
 //Goods
 function ShowModalGoods() {
     openloading(true);
     GenData("Goods");
-    //setUnitGoods(result.Unit[0]);
 }
 
 function SaveGoodsModal() {
@@ -509,7 +461,7 @@ $("#formGoods").on('submit', function (e) {
             if (response) {
                 refreshListData('Goods');
                 $("#GoodsModal").modal('toggle');
-                //clearModal("#frmGoods");
+                clearModal("#GoodsModal");
             }
         },
         error: function (error) {
@@ -518,51 +470,29 @@ $("#formGoods").on('submit', function (e) {
     });
 });
 
-function refreshListData(system) {
-    var urlPath = "";
-    switch (system) {
-        case "Goods":
-            urlPath = "refreshGoods";
-            break;
-    
-        default:
-            break;
-    }
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $.ajax({
-        type: 'POST',
-        url: urlPath,
-        datatype: "json",
-        traditional: true,
-        success: function (e) {
-            if (e != null) {
-                $(".contentGoods").html(e);
-                openloading(false);
-            }
-        },
-        error: function (e) {
-            openloading(false);
-        }
-    });
+//Unit
+function ShowModalUnit() {
+    openloading(true);
+    GenData("Unit");
 }
 
-$('#GoodsModal').on('hidden.bs.modal', function (e) {
-    //console.log("kuy");
+$(document).on('submit', "#formUnit", function (e) {
+    e.preventDefault();
+    openloading(true);
+    $.ajax({
+        type: "POST",
+        url: "./BindSaveUnit",
+        data: $("#formUnit").serialize(),
+        success: function (response) {
+            console.log(response);
+            if (response) {
+                refreshListData('Unit');
+                $("#UnitModal").modal('toggle');
+                clearModal("#UnitModal");
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 });
-
-// $('#GoodsModal').modal({backdrop: 'static', keyboard: false}) ;
-
-$('#GoodsModal').on('hidden.bs.modal', function (e) {
-    $(this)
-      .find("input,textarea,select")
-         .val('')
-         .end()
-      .find("input[type=checkbox], input[type=radio]")
-         .prop("checked", "")
-         .end();
-  })
-

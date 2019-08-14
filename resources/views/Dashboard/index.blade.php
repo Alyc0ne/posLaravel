@@ -96,17 +96,6 @@
                 <li>
                     <a href="{{ route('goods') }}">Goods</a>
                 </li>
-                {{-- <li>
-                    <a href="#" class='showMenu'>IC</a>
-                    <ul class="sidebar-sub-level-items">
-                        <li>
-                            <a href="">Unit</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('goods') }}">Goods</a>
-                        </li>
-                    </ul>
-                </li> --}}
             </ul>
         </div>
     </div>
@@ -133,6 +122,10 @@
             @yield('content')
         </div>
     </div>
+</div>
+<div class='ExtendsModal'>
+    @extends('Shared.Modal.Goods.AddGoods')
+    @extends('Shared.Modal.Unit.AddUnit')
 </div>
 </body>
 </html>

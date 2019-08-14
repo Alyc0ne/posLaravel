@@ -75,11 +75,12 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $Goods = Goods::where($where)::paginate(8);
+            $Goods = Goods::paginate(8); //::where($where)
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
     }
 
+    //Use when pagination work.
     public function fetchGoods(Request $request)
     {
         if ($request->ajax()) {

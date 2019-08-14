@@ -1,6 +1,6 @@
 @extends('Dashboard.index')
 @section('content')
-<script src="js/system/IC/Goods/Goods.js"></script>
+{{-- <script src="js/system/IC/Goods/Goods.js"></script> --}}
 <div class="block-content">
     <input type="hidden" id='SystemName' value='{{ $SystemName }}'>
     <div class='block-menu' style="border-bottom:none;">
@@ -29,23 +29,21 @@
             </div>
         </div>
     </div>
-    <div class="contentGoods">
+    <div class="contentUnit">
         <div class="row m_a0 bordered-box table-scoller">
             <table class="table" style="margin-bottom:0px;">
                 <thead style="background-color:#fafafa;">
                     <tr>
-                        <th class="w_10">รหัสสินค้า</th>
-                        <th class="w_60">ชื่อสินค้า</th>
-                        <th class='w_20 text-right'>ราคาสินค้า</th>
+                        <th class="w_10">รหัสหน่วยนับ</th>
+                        <th class="w_60">ชื่อหน่วยนับ</th>
                         <th class='w_10' style="text-align:center;">#</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($Goods as $_Goods)
+                    @foreach ($Unit as $_Unit)
                         <tr>
-                            <td scope="row">{{ $_Goods->GoodsBarcode }}</td>
-                            <td>{{ $_Goods->GoodsName }}</td>
-                            <td class="text-right">{{ number_format($_Goods->GoodsPrice,2) }}</td>
+                            <td scope="row">{{ $_Unit->UnitNo }}</td>
+                            <td>{{ $_Unit->UnitName }}</td>
                             <td style="text-align:center;"><button class="btn btn-default p_a0"><i class="fas fa-edit"></i></button><button class="btn btn-default p_a0"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                     @endforeach
@@ -53,8 +51,11 @@
             </table>
         </div>
         <div class="row">
-                {!! $Goods->links() !!}
+            {!! $Unit->links() !!}
         </div>
     </div>
 </div>
 @endsection
+<div class='ExtendsModal'>
+    @extends('Shared.Modal.Goods.AddGoods')
+</div>

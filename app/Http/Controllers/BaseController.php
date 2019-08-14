@@ -12,16 +12,17 @@ class BaseController extends Controller
         $BaseSystem = new BaseSystem();
         $Year = date("Y");
         $Month = date("m");
+        $fields = array();
 
         if ($System == "Unit") {
-            $FirstChar = "UN";$table = "smUnit";$coloumn = "UnitNo";
+            $FirstChar = "UN";$table = "smUnit";$coloumn = "UnitNo";array_push($fields,'UnitNo');
         } else if($System == "Goods") {
-            $FirstChar = "GO";$table = "smGoods";$coloumn = "GoodsNo";
+            $FirstChar = "GO";$table = "smGoods";$coloumn = "GoodsNo";array_push($fields,'GoodsNo');
         } else if ($System == "Invoice") {
             $FirstChar = "IN";$table = "soInvoice";$coloumn = "InvoiceNo";
         }
         
-        $RunningNumber = $BaseSystem->sqlQueryOneRowDesc($table, $coloumn);
+        $RunningNumber = $BaseSystem->sqlQuerySomeFieldsOneRowDesc($table, $fields,$coloumn);
 
         if(empty($RunningNumber)){
             $RunningNumber = $FirstChar.date("Ym")."-01";
@@ -52,20 +53,17 @@ class BaseController extends Controller
     public function GenData(Request $request)
     {
         $BaseSystem = new BaseSystem();
-        //$Result = array();
+        $Unit = array();
         if ($request->ajax()) {
             $Content = json_decode($request->getContent());
             $System = $Content->System;
             $defaultWhere = $BaseSystem->defaultWhere();
-            //$defaultWhere = array('IsDelete' => false);
             $RunningNumber = $this->GenRunningNumber($System);
-            //array_push($Result, $RunningNumber);
             
             switch ($System) {
                 case 'Goods':
                     $UnitData = $BaseSystem->sqlQuery('smUnit', $defaultWhere);
-                    $Unit = $UnitData;//json_decode($UnitData);
-                    //array_push($Result, $Unit[0]);
+                    $Unit = $UnitData;
                     break;
                 
                 default:

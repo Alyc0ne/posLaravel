@@ -27,6 +27,11 @@ class BaseSystem extends Model
         return $result = DB::table($table)->orderBy($column, 'desc')->first();
     }
 
+    public function sqlQuerySomeFieldsOneRowDesc($table, $fields, $column)
+    {
+        return $result = DB::table($table)->select($fields)->orderBy($column, 'desc')->first();
+    }
+
     public function sqlQueryWithPagination($table, $where, $pagination)
     {
         return $result = DB::table($table)->where($where)-get();//->simplePaginate($pagination);
