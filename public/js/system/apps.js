@@ -395,8 +395,8 @@ $(document).on('hidden.bs.modal', '.modalInsert', function (e) {
     clearModal(ID);
 });
 
-function clearModal(name) {
-    $("#" + name)
+function clearModal(modalID) {
+    $(modalID)
         .find("input,textarea,select")
             .val('')
             .end()

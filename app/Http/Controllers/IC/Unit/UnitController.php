@@ -53,7 +53,7 @@ class UnitController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $Unit = Unit::paginate(8);
+            $Unit = Unit::where($where)->paginate(8);
             return view('IC.Unit.UnitContent', compact('Unit'))->render();
         }
     }
