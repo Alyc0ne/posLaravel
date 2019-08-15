@@ -154,6 +154,10 @@ function openloading(isLoad) {
     }
 }
 
+$(document).on('blur', 'input[type=text]' ,function () {
+    $(this).removeClass();
+});
+
 function bindValidate(frm) {
     var IsResult = true;
     if ($(frm).length > 0) {
