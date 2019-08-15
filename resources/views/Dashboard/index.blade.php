@@ -30,6 +30,9 @@
         <div></div>
     </div>
 </div>
+<div class="alertNotification">
+    @extends('Shared.Alert')
+</div>
 <header class="navbar navbar-header navbar-expand-sm js-navbar" data-qa-selector="navbar">
     <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
     <div class="container-fluid">
@@ -105,14 +108,14 @@
         <div class="container-fluid">
             <div class='block-menu'>
                 <div class='row'>
-                        <div class="col-md-12 col-lg-6 d-flex">
-                            <button name="button" type="button" class="toggle-mobile-nav"><span class="sr-only">Open sidebar</span>
-                                <i aria-hidden="true" data-hidden="true" class="fa fa-bars"></i>
-                            </button> 
-                        </div>
-                        <div class="col-md-12 col-lg-6 d-inline-flex flex-wrap justify-content-lg-end" id='menuRight'>
-                            
-                        </div>
+                    <div class="col-md-12 col-lg-6 d-flex">
+                        <button name="button" type="button" class="toggle-mobile-nav"><span class="sr-only">Open sidebar</span>
+                            <i aria-hidden="true" data-hidden="true" class="fa fa-bars"></i>
+                        </button> 
+                    </div>
+                    <div class="col-md-12 col-lg-6 d-inline-flex flex-wrap justify-content-lg-end" id='menuRight'>
+                        
+                    </div>
                 </div>
                 {{-- <button name="button" type="button" class="toggle-mobile-nav"><span class="sr-only">Open sidebar</span>
                     <i aria-hidden="true" data-hidden="true" class="fa fa-bars"></i>
@@ -127,6 +130,7 @@
     @extends('Shared.Modal.Goods.AddGoods')
     @extends('Shared.Modal.Unit.AddUnit')
 </div>
+
 </body>
 </html>
 

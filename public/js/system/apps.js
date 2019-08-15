@@ -387,7 +387,7 @@ function refreshListData(system) {
 
 /*############################# Modal #############################*/
 $(document).on('shown.bs.modal', '.modalInsert', function() {
-    $('.inputFocus').trigger('focus');
+    $(this).find('input.inputFocus').trigger('focus');
 });
 
 $(document).on('hidden.bs.modal', '.modalInsert', function (e) {
@@ -461,6 +461,7 @@ $(document).on('submit', "#formGoods", function (e) {
                 console.log(response);
                 if (response) {
                     refreshListData('Goods');
+                    AlertStatus('success','บันทึกข้อมูลสินค้าเรียบร้อย !');
                     $("#GoodsModal").modal('toggle');
                     clearModal("#GoodsModal");
                 }
@@ -498,3 +499,24 @@ $(document).on('submit', "#formUnit", function (e) {
         }
     });
 });
+
+function AlertStatus(status,txt) {
+    /*
+        status : success,error
+    */
+
+   var type = 'bottom-right';
+
+   //$('.notify').removeClass().addClass('notify hide');
+   
+   $('.notify')
+     .removeClass()
+     .attr('data-notification-status', status)
+     .addClass(type + ' notify')
+     .addClass('do-show')
+     .html(txt); 
+
+    setTimeout(function(){ 
+        $('.notify').removeClass().addClass('notify hide');
+    }, 4000);
+}

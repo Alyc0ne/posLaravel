@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade inputFocus" id="GoodsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade modalInsert" id="GoodsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <label for="GoodsName" class="col-sm-2 col-form-label require"><span class='text-red'>* </span>ชื่อสินค้า : </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control inputFocus" id="GoodsName" name="GoodsName" data-maxlength='250' autofocus autocomplete="off">
+                        <input type="text" class="form-control inputFocus" id="GoodsName" name="GoodsName" data-maxlength='250' autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">

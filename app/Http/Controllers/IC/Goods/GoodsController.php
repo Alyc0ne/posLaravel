@@ -18,7 +18,9 @@ class GoodsController extends Controller
 
     public function index()
     {
-        $Goods = Goods::paginate(8);
+        $BaseSystem = new BaseSystem();
+        $where = $BaseSystem->defaultWhere();
+        $Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(7);
         $SystemName = "Goods";
 
         return view('IC/Goods/index', compact('Goods','SystemName'));
@@ -27,7 +29,7 @@ class GoodsController extends Controller
     public function getNoGoodsBarcode()
     {
         $GoodsModel = new Goods();
-        $Goods = $GoodsModel::paginate(8);
+        $Goods = $GoodsModel::paginate(7);
         return view('Shared.Modal.Goods.NoGoodsBarcode', compact('Goods','GoodsPaginate'))->render();
         //view('Shared.Modal.Goods.NoGoodsBarcode', compact('Goods'));
 
@@ -75,7 +77,7 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $Goods = Goods::where($where)->paginate(8);
+            $Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(7);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
     }
@@ -86,7 +88,7 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $Goods = Goods::where($where)::paginate(8);
+            $Goods = Goods::where($where)::paginate(7);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
     }
@@ -99,6 +101,8 @@ class GoodsController extends Controller
                 $BaseSystem = new BaseSystem();
                 $UnitID = $request->input('unitGoods');
                 $where = $BaseSystem->defaultWhere();
+                //array_push($where, 'UnitID');
+                $where['UnitID'] = $UnitID;
                 $fields = array('UnitName');
                 $UnitData = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fields, true);
 

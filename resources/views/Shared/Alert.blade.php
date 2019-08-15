@@ -1,0 +1,1 @@
+<div class="notify hide" data-notification-status="success"></div>
