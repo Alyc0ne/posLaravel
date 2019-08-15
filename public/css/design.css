@@ -413,3 +413,17 @@ ul {
 .bottom-right[data-notification-status="plain"] {
   background-color: #333;
 }
+
+/* List Table */
+/* .table-scroll {
+	position:relative;
+	max-width:100%;
+	overflow:auto;
+}
+.table-scroll th, .table-scroll td {
+	padding:5px 10px;
+	white-space:nowrap;
+}
+.table-scroll thead, .table-scroll tfoot {
+	background-color:#fafafa;
+} */
