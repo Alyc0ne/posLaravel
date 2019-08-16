@@ -155,7 +155,10 @@ function openloading(isLoad) {
 }
 
 $(document).on('blur', 'input[type=text]' ,function () {
-    $(this).removeClass();
+    if (!$(this).val()) {
+        $(this).removeClass('border_red');
+        $(this).closest('div').find('div.ErrorValidate').remove();
+    }
 });
 
 function bindValidate(frm) {

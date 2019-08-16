@@ -109,6 +109,30 @@ span.imageDel {
 .w_100{
     width: 100% !important;
 }
+.mw_120{
+    min-width: 120px !important;
+}
+.mw_200{
+    min-width: 200px !important;
+}
+.mw_250{
+    min-width: 250px !important;
+}
+.mw_300{
+    min-width: 300px !important;
+}
+.mw_350{
+    min-width: 350px !important;
+}
+.mw_400{
+    min-width: 400px !important;
+}
+.mw_450{
+    min-width: 450px !important;
+}
+.mw_500{
+    min-width: 500px !important;
+}
 .wh_5{
     width: 5% !important;
     height: 5% !important;

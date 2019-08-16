@@ -20,7 +20,7 @@ class GoodsController extends Controller
     {
         $BaseSystem = new BaseSystem();
         $where = $BaseSystem->defaultWhere();
-        $Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(2);
+        $Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(15);
         $SystemName = "Goods";
 
         return view('IC/Goods/index', compact('Goods','SystemName'));
