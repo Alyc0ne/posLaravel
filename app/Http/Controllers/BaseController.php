@@ -59,10 +59,12 @@ class BaseController extends Controller
             $System = $Content->System;
             $defaultWhere = $BaseSystem->defaultWhere();
             $RunningNumber = $this->GenRunningNumber($System);
+            //$OrderBy = $BaseSystem->defaultOrderBy();
+            $OrderBy = 'CreatedDate';
             
             switch ($System) {
                 case 'Goods':
-                    $UnitData = $BaseSystem->sqlQuery('smUnit', $defaultWhere);
+                    $UnitData = $BaseSystem->sqlQueryOrderBy('smUnit', $defaultWhere, $OrderBy);
                     $Unit = $UnitData;
                     break;
                 
