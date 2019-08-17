@@ -155,7 +155,7 @@ function openloading(isLoad) {
 }
 
 $(document).on('blur', 'input[type=text]' ,function () {
-    if (!$(this).val()) {
+    if ($(this).val()) {
         $(this).removeClass('border_red');
         $(this).closest('div').find('div.ErrorValidate').remove();
     }
@@ -400,6 +400,7 @@ $(document).on('shown.bs.modal', '.modalInsert', function() {
 $(document).on('hidden.bs.modal', '.modalInsert', function (e) {
     var ID = $(this).attr('id');
     clearModal(ID);
+    $('#GoodsModal').find('input#GoodsBarcode').prop('disabled',true)
 });
 
 function clearModal(modalID) {

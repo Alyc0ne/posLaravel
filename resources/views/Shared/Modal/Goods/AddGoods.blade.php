@@ -26,7 +26,7 @@
                             <input type="hidden" name="IsBarcode" value="0"/>
                             <label class="custom-control-label" for="IsBarcode">ใช้งาน Barcode</label>
                         </div>
-                        <input type="text" class="form-control" id="GoodsBarcode" name="GoodsBarcode" data-maxlength='10' disabled>
+                        <input type="text" class="form-control" id="GoodsBarcode" name="GoodsBarcode" data-maxlength='10' disabled autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">

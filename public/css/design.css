@@ -420,6 +420,10 @@ ul {
 	max-width:100%;
 	overflow:auto;
 }
+.table-scroll-x {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 .table-scroll th, .table-scroll td {
 	padding:5px 10px;
 	white-space:nowrap;
@@ -436,50 +440,29 @@ ul {
   text-overflow: ellipsis;
 }
 
-.table-scroll-y {
-	position:relative;
-	max-width:100%;
-  overflow-y:auto;
-}
-.table-scroll-y th, .table-scroll-y td {
-	padding:5px 10px;
-	white-space:nowrap;
-}
-.table-scroll-y thead, .table-scroll-y tfoot {
-	background-color:#fafafa;
-}
-
-.table-scroll-y th, .table-scroll-y td {
-	padding:5px 10px;
-	white-space:nowrap;
-}
-
 /* table {
   border-collapse: collapse;
   background: white;
   table-layout: fixed;
   width: 100%;
-}
-th, td {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  width: 160px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 } */
+th, td {
+	padding:5px 10px !important;
+  white-space:nowrap;
+  overflow: hidden;
+  width: 160px;
+  text-overflow: ellipsis;
+} 
 
 .pane {
-  background: #eee;
+  /* background: #eee; */
 }
 .pane-hScroll {
   overflow: auto;
-  width: 400px;
-  background: green;
+  width: 1116px;
 }
 .pane-vScroll {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 200px;
-  background: red;
+  /* height: 200px; */
 }

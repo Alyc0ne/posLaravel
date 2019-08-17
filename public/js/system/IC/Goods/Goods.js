@@ -2,6 +2,7 @@ $(document).on("click", "#IsBarcode", function () {
     var IsBarcode = $("#IsBarcode:checkbox:checked").length;
     if (IsBarcode > 0) {
         $("#GoodsBarcode").prop("disabled",false);
+        $("#GoodsBarcode").trigger('focus');
         $("input[name=IsBarcode]").val('1');
         $("#GoodsBarcode").closest("div.form-group").find("span.text-red").html("*");
     }else{
