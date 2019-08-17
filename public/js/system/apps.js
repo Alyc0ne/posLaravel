@@ -527,3 +527,11 @@ function AlertStatus(status,txt) {
         $('.notify').removeClass().addClass('notify hide');
     }, 4000);
 }
+
+$(function () {
+    $('.pane-hScroll').scroll(function() {
+        $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
+      });
+});
+
+  

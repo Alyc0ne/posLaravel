@@ -415,22 +415,25 @@ ul {
 }
 
 /* List Table */
-.table-scroll-x {
+.table-scroll {
 	position:relative;
 	max-width:100%;
 	overflow:auto;
 }
-.table-scroll-x th, .table-scroll td {
+.table-scroll th, .table-scroll td {
 	padding:5px 10px;
 	white-space:nowrap;
 }
-.table-scroll-x thead, .table-scroll-x tfoot {
+.table-scroll thead, .table-scroll tfoot {
 	background-color:#fafafa;
 }
 
-.table-scroll-x th, .table-scroll-x td {
+.table-scroll th, .table-scroll td {
 	padding:5px 10px;
-	white-space:nowrap;
+  white-space:nowrap;
+  overflow: hidden;
+  width: 160px;
+  text-overflow: ellipsis;
 }
 
 .table-scroll-y {
@@ -449,4 +452,34 @@ ul {
 .table-scroll-y th, .table-scroll-y td {
 	padding:5px 10px;
 	white-space:nowrap;
+}
+
+/* table {
+  border-collapse: collapse;
+  background: white;
+  table-layout: fixed;
+  width: 100%;
+}
+th, td {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} */
+
+.pane {
+  background: #eee;
+}
+.pane-hScroll {
+  overflow: auto;
+  width: 400px;
+  background: green;
+}
+.pane-vScroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 200px;
+  background: red;
 }
