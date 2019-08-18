@@ -13,6 +13,7 @@ class BaseController extends Controller
         $Year = date("Y");
         $Month = date("m");
         $fields = array();
+        $OrderBy = 'CreatedDate';
 
         if ($System == "Unit") {
             $FirstChar = "UN";$table = "smUnit";$coloumn = "UnitNo";array_push($fields,'UnitNo');
@@ -22,7 +23,7 @@ class BaseController extends Controller
             $FirstChar = "IN";$table = "soInvoice";$coloumn = "InvoiceNo";
         }
         
-        $RunningNumber = $BaseSystem->sqlQuerySomeFieldsOneRowDesc($table, $fields,$coloumn);
+        $RunningNumber = $BaseSystem->sqlQuerySomeFieldsOneRowDesc($table, $fields,$OrderBy);
 
         if(empty($RunningNumber)){
             $RunningNumber = $FirstChar.date("Ym")."-01";
