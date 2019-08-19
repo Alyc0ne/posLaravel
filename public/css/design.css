@@ -448,15 +448,17 @@ ul {
 } */
 th, td {
 	padding:5px 10px !important;
-  white-space:nowrap;
+  /* white-space:nowrap; */
   overflow: hidden;
-  width: 160px;
+  min-width: 200px !important;
+  max-width: 200px !important;
   text-overflow: ellipsis;
 } 
 
-.pane {
-  /* background: #eee; */
+td {
+  /* white-space:nowrap; */
 }
+
 .pane-hScroll {
   overflow: auto;
   width: 1116px;

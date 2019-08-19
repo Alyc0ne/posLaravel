@@ -33,11 +33,11 @@ Route::post('/GetGoodsByBarcode', 'IC\Goods\GoodsController@GetGoodsByBarcode');
 
 Route::post('/GenData', 'BaseController@GenData');
 
+//Goods
 Route::post('/BindSaveGoods', 'IC\Goods\GoodsController@BindSave');
-
 Route::post('refreshGoods', 'IC\Goods\GoodsController@refreshGoods');
-
 Route::post('fetchGoods', 'IC\Goods\GoodsController@fetchGoods');
+Route::post('GetGoods', 'IC\Goods\GoodsController@GetGoodsByID');
 
 //Unit
 Route::get('unit', 'IC\Unit\UnitController@index')->name('unit');

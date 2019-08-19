@@ -43,3 +43,36 @@ function fetch_Goods(page) {
         }
     });
 }
+
+$(document).on('click', '#btn-editGoods', function () {
+    var GoodsID = $(this).data('id');
+    $.ajax({
+        type: 'POST',
+        url: "GetGoods",
+        datatype: "json",
+        data: JSON.stringify({GoodsID: GoodsID}),
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        beforeSend : function () {
+            openloading(true);
+        },
+        success: function (e) {
+            console.log(e.IsBarcode);
+            if (e != null) {
+                $('#GoodsNo').val(e.GoodsNo);
+                if (e.IsBarcode) {
+                    $('#IsBarcode').prop('checked',true);
+                }
+                $('#GoodsBarcode').val(e.GoodsBarcode);
+                $('#GoodsName').val(e.GoodsName);
+                $('#GoodsCost').val(e.GoodsCost);
+                $('#GoodsPrice').val(e.GoodsPrice);
+                $("#GoodsModal").modal();
+                openloading(false);
+            }
+        },
+        error: function (e) {
+            openloading(false);
+        }
+    });
+});

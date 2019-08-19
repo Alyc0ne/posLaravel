@@ -4,6 +4,12 @@ var path_link = "";
 $(document).ready(function () {
     var SystemName = CheckSystemName();
     genMenuRight(SystemName); 
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 });
 
 function genMenuRight(SystemName) {
@@ -533,6 +539,9 @@ $(function () {
     $('.pane-hScroll').scroll(function() {
         $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
       });
+
+    var WidthcontentGoods = document.getElementsByClassName('contentGoods')[0].offsetWidth;
+    $('.pane-hScroll').css('width',WidthcontentGoods);
 });
 
   

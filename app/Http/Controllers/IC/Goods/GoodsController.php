@@ -20,7 +20,9 @@ class GoodsController extends Controller
     {
         $BaseSystem = new BaseSystem();
         $where = $BaseSystem->defaultWhere();
-        $Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(20);
+        $OrderBy = 'CreatedDate';
+        //$Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(20);
+        $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20);
         $SystemName = "Goods";
 
         return view('IC/Goods/index', compact('Goods','SystemName'));
@@ -132,6 +134,21 @@ class GoodsController extends Controller
                 //throw $th;
                 return Response()->json($IsSuccess);
             }
+        }
+    }
+
+    
+    public function GetGoodsByID(Request $request)
+    {
+        if ($request->ajax()) {
+            $Content = json_decode($request->getContent());
+            $GoodsID = $Content->GoodsID;
+            $BaseSystem = new BaseSystem();
+            $where = $BaseSystem->defaultWhere();
+            $where = array_merge($where, array('GoodsID' => $GoodsID));
+            $fields = array('GoodsID','GoodsName','GoodsUnitID','GoodsPrice','IsBarcode');
+            $Goods = $BaseSystem->sqlQuerySomeFields('smGoods', $where, $fields, true);
+            return Response()->json($Goods);
         }
     }
 }
