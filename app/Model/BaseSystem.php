@@ -47,12 +47,12 @@ class BaseSystem extends Model
         return $result = DB::table($table)->where($where)->orderBy($OrderBy, 'desc')->paginate($pagination);
     }
 
-    public function sqlQuerySomeFields($table, $where, $fields, $onerows = false)
+    public function sqlQuerySomeFields($table, $where, $fields, $OrderBy, $onerows = false)
     {
         if ($onerows) {
             return DB::table($table)->select($fields)->where($where)->first();
         }else {
-            return DB::table($table)->select($fields)->where($where)->get();
+            return DB::table($table)->select($fields)->where($where)->$OrderBy($OrderBy, 'desc')->get();
         }   
     }
 }

@@ -56,17 +56,18 @@ $(document).on('click', '#btn-editGoods', function () {
         beforeSend : function () {
             openloading(true);
         },
-        success: function (e) {
-            console.log(e.IsBarcode);
-            if (e != null) {
-                $('#GoodsNo').val(e.GoodsNo);
-                if (e.IsBarcode) {
-                    $('#IsBarcode').prop('checked',true);
+        success: function (Response) {
+            if (Response != null) {
+                $('#GoodsNo').val(Response.Goods.GoodsNo);
+                $('#tempGoodsNo').val(Response.Goods.GoodsNo);
+                if (Response.Goods.IsBarcode) {
+                    $('#IsBarcode').trigger('click');
+                    $('#GoodsBarcode').val(Response.Goods.GoodsBarcode);
                 }
-                $('#GoodsBarcode').val(e.GoodsBarcode);
-                $('#GoodsName').val(e.GoodsName);
-                $('#GoodsCost').val(e.GoodsCost);
-                $('#GoodsPrice').val(e.GoodsPrice);
+                $('#GoodsName').val(Response.Goods.GoodsName);
+                $('#GoodsCost').val(Response.Goods.GoodsCost);
+                $('#GoodsPrice').val(Response.Goods.GoodsPrice);
+                SetDataSelect2(Response.Unit, "unitGoods")
                 $("#GoodsModal").modal();
                 openloading(false);
             }

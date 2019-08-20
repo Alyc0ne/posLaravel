@@ -270,7 +270,7 @@ function GenData(system) {
                     $("#tempGoodsNo").val(Running);
                     $("#GoodsName").focus();
                     $("#GoodsModal").modal();
-                    SetDataSelect2(e.Unit, "unitGoods")
+                    SetDataSelect2(e.Unit, "unitGoods");
                     break;
                 case "Unit":
                     $("#UnitNo").val(Running);
