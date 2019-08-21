@@ -226,28 +226,8 @@ function bindValidate(frm) {
     return IsResult;
 
 }
-/*---------------Messenger Alert----------------*/
-// Messenger.options = {
-//     extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
-//     theme: 'air'
-// }
 
-// function HideMsg() {
-//     Messenger().hideAll();
-// }
-
-// function PostMsgSuccess(msg) {
-//     Messenger().hideAll();
-//     Messenger().post({
-//         //     id: 'success-post-msg',
-//         message: msg,
-//         //     type: 'success',
-//         hideAfter: 2,
-//         //     hideOnNavigate: true
-//     });
-// }
-
-function GenData(system) {
+function GenData(system,type = 'new') {
     var Running = "";
     $.ajaxSetup({
         headers: {
@@ -266,6 +246,7 @@ function GenData(system) {
             Running = e.RunningNumber;
             switch (system) {
                 case "Goods":
+                    $("#frmGoods").data('type',type)
                     $("#GoodsNo").val(Running);
                     $("#tempGoodsNo").val(Running);
                     $("#GoodsName").focus();
@@ -326,12 +307,6 @@ function RandomMath() {
         .substring(1);
     }
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
-
-function AlertModal(AlertText) {
-    $("#AlertModal").modal();
-    //$("#Alert-body-img").html(AlertIcon);
-    $("#Alert-body").html(AlertText);
 }
 
 function Confirm_POS() {
@@ -398,7 +373,7 @@ function refreshListData(system) {
     });
 }
 
-/*############################# Modal #############################*/
+// #region Manage Modal
 $(document).on('shown.bs.modal', '.modalInsert', function() {
     $(this).find('input.inputFocus').trigger('focus');
 });
@@ -406,96 +381,35 @@ $(document).on('shown.bs.modal', '.modalInsert', function() {
 $(document).on('hidden.bs.modal', '.modalInsert', function (e) {
     var ID = $(this).attr('id');
     clearModal(ID);
-    $('#GoodsModal').find('input#GoodsBarcode').prop('disabled',true)
 });
 
 function clearModal(modalID) {
-    $(modalID)
+    $("#" + modalID)
         .find("input,textarea,select")
             .val('')
             .end()
         .find("input[type=checkbox], input[type=radio]")
             .prop("checked", "")
+            .end()
+        .find('input#GoodsBarcode')
+            .prop('disabled',true)
             .end();
 }
+// #endregion
 
 
-//Goods
-function ShowModalGoods() {
-    openloading(true);
-    GenData("Goods");
-}
 
-function SaveGoodsModal() {
-    if (bindValidate("#frmGoods")){
-        openloading(true);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            type: 'POST',
-            url: "./BindSaveGoods",
-            data: 
-            JSON.stringify({
-                "GoodsNo" : $("#GoodsNo").val(),
-                "IsBarcode" : $("#IsBarcode:checkbox:checked").length,
-                "GoodsBarcode" : $("#GoodsBarcode").val(),
-                "GoodsName" : $("#GoodsName").val(),
-                "GoodsPrice" : $("#GoodsPrice").val(),
-                "GoodsCost" : $("#GoodsCost").val(),
-                "GoodsUnitID" : $("#GoodsUnit").val()
-            }),
-            datatype: "json",
-            traditional: true,
-            success: function (e) {
-                if (e) {
-                    openloading(false);
-                    clearModal("#frmGoods");
-                    $("#GoodsModal").modal('toggle');
-                }
-            },
-            error: function (e) {
-                openloading(false);
-            }
-        });
-    }
-}
-
-$(document).on('submit', "#formGoods", function (e) {
-    e.preventDefault();
-    if (bindValidate("#frmGoods")){
-        openloading(true);
-        $.ajax({
-            type: "POST",
-            url: "./BindSaveGoods",
-            data: $("#formGoods").serialize(),
-            success: function (response) {
-                console.log(response);
-                if (response) {
-                    refreshListData('Goods');
-                    AlertStatus('success','บันทึกข้อมูลสินค้าเรียบร้อย !');
-                    $("#GoodsModal").modal('toggle');
-                    clearModal("#GoodsModal");
-                }
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    }
-});
 
 //Unit
-function ShowModalUnit() {
+function ShowModalUnit(type) {
     openloading(true);
-    GenData("Unit");
+    GenData("Unit",type);
 }
 
 $(document).on('submit', "#formUnit", function (e) {
     e.preventDefault();
     openloading(true);
+    var url = $(this).data('type') != "new" ? 'BindEditUnit' : './BindSaveUnit';
     $.ajax({
         type: "POST",
         url: "./BindSaveUnit",
@@ -505,7 +419,7 @@ $(document).on('submit', "#formUnit", function (e) {
             if (response) {
                 refreshListData('Unit');
                 $("#UnitModal").modal('toggle');
-                clearModal("#UnitModal");
+                clearModal("UnitModal");
             }
         },
         error: function (error) {
@@ -539,7 +453,12 @@ $(function () {
     $('.pane-hScroll').scroll(function() {
         $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
       });
+    
+    var WidthcontentGoods = document.getElementsByClassName('contentGoods')[0].offsetWidth;
+    $('.pane-hScroll').css('width',WidthcontentGoods);
+});
 
+$(window).resize(function() {
     var WidthcontentGoods = document.getElementsByClassName('contentGoods')[0].offsetWidth;
     $('.pane-hScroll').css('width',WidthcontentGoods);
 });

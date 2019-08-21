@@ -137,11 +137,14 @@ class GoodsController extends Controller
         }
     }
 
-    public function BindUpdate(Request $request)
+    public function BindEdit(Request $request)
     {
         $IsSuccess = false;
         if ($request->ajax()) {
             try {
+                $Content = json_decode($request->getContent());
+                $GoodsID = $Content->GoodsID;
+
                 $BaseSystem = new BaseSystem();
                 $UnitID = $request->input('unitGoods');
                 $where = $BaseSystem->defaultWhere();
@@ -150,7 +153,6 @@ class GoodsController extends Controller
                 $UnitData = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fields, true);
 
                 $Goods = Goods::find($GoodsID);
-                dd($Goods);
                 $IsBarcode = boolval($request->input('IsBarcode'));
                 $Goods->GoodsBarcode = $IsBarcode ? $request->input('GoodsBarcode') : null;
                 $Goods->GoodsName = $request->input('GoodsName');
@@ -159,11 +161,11 @@ class GoodsController extends Controller
                 $Goods->GoodsUnitID = $UnitID;
                 $Goods->GoodsUnitName = $UnitData->UnitName;
                 $ID = Auth::user()->UserID;
-                $Goods->CreatedByID = "1";
+                $Goods->CreatedByID = strval($ID);
                 $Goods->ModifiedByID = null;
                 $Goods->ModifiedDate = null;
                 $Goods->IsBarcode = boolval($IsBarcode);
-                //$Goods->save();
+                $Goods->save();
 
                 $IsSuccess = true;
                 return Response()->json($IsSuccess);
@@ -182,12 +184,11 @@ class GoodsController extends Controller
             $GoodsID = $Content->GoodsID;
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $OrderBy = 'CreatedDate';
-            $whereGoods = array_merge($where, array('GoodsID' => $GoodsID));
+            $whereGoods = array_merge($where, array('GoodsID' => strval($GoodsID)));
             $fieldsGoods = array('GoodsID','GoodsNo','GoodsName','GoodsUnitID','GoodsPrice','IsBarcode','GoodsBarcode');
             $fieldsUnit = array('UnitID','UnitName');
             $Goods = $BaseSystem->sqlQuerySomeFields('smGoods', $whereGoods, $fieldsGoods, true);
-            $Unit = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fieldsUnit, $OrderBy);
+            $Unit = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fieldsUnit);
             return Response()->json(array('Goods' => $Goods, 'Unit' => $Unit));
         }
     }

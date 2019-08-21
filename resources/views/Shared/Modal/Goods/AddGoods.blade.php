@@ -54,13 +54,12 @@
                         </select>
                     </div>
                 </div>
-                <input type='hidden' id='GoodsUnitID' name='GoodsUnitID'>
+                <input type='hidden' id='hidGoodsID' name='hidGoodsID'>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary"  id="btn-Save-Goods">Save changes</button>
-            {{-- onclick="SaveGoodsModal()"  --}}
+            <button type="submit" class="btn btn-primary" id="btn-Save-Goods">Save changes</button>
         </div>
        </form>
     </div>

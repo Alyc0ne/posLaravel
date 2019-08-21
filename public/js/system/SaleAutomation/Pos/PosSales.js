@@ -1,6 +1,7 @@
 var update = false;
 $(document).ready(function() {
-    setTimeout(function(){ $("#GoodsBarcode").focus(); }, 500);
+    //setTimeout(function(){ $("#GoodsBarcode").focus(); }, 500);
+    $('#GoodsBarcode').trigger('focus');
 });
 
 $("#discountCash").change(function(e) {

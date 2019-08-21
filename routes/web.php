@@ -35,6 +35,7 @@ Route::post('/GenData', 'BaseController@GenData');
 
 //Goods
 Route::post('/BindSaveGoods', 'IC\Goods\GoodsController@BindSave');
+Route::post('BindEditGoods', 'IC\Goods\GoodsController@BindEdit');
 Route::post('refreshGoods', 'IC\Goods\GoodsController@refreshGoods');
 Route::post('fetchGoods', 'IC\Goods\GoodsController@fetchGoods');
 Route::post('GetGoods', 'IC\Goods\GoodsController@GetGoodsByID');
