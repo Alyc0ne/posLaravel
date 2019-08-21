@@ -24,38 +24,38 @@ function setTransac() {
             return _t.Element;
         },
         genGrid: function () {
-            var Rightbox = $('<div class="row h_100"></div>');
-            var gridStart = $('<div id="gridStart" style="width:100%;"></div>');
-            var transac_d = "<div class='col-12 transacgrid_d' id='transac-body'>";
-            transac_d += "<table class='table'>";
-                transac_d += "<thead class='thead-dark'>";
-                    transac_d += "<tr>";
-                        transac_d += "<th scope='col' class='w_5'>#</th>";
-                        transac_d += "<th scope='col' class='w_60'>Product</th>";
-                        transac_d += "<th scope='col' class='w_10'>Quantity</th>";
-                        transac_d += "<th scope='col' class='w_20'>Price</th>";
-                    transac_d += "</tr>";
-                transac_d += "</thead>";
-                transac_d += "<tbody class='cart_detail'></tbody>";
-            transac_d += "</table>";
-            transac_d += "</div>";
+            // var Rightbox = $('<div class="row h_100"></div>');
+            // var gridStart = $('<div id="gridStart" style="width:100%;"></div>');
+            // var transac_d = "<div class='col-12 transacgrid_d' id='transac-body'>";
+            // transac_d += "<table class='table'>";
+            //     transac_d += "<thead class='thead-dark'>";
+            //         transac_d += "<tr>";
+            //             transac_d += "<th scope='col' class='w_5'>#</th>";
+            //             transac_d += "<th scope='col' class='w_60'>Product</th>";
+            //             transac_d += "<th scope='col' class='w_10'>Quantity</th>";
+            //             transac_d += "<th scope='col' class='w_20'>Price</th>";
+            //         transac_d += "</tr>";
+            //     transac_d += "</thead>";
+            //     transac_d += "<tbody class='cart_detail'></tbody>";
+            // transac_d += "</table>";
+            // transac_d += "</div>";
 
-            gridStart.append(transac_d);
+            // gridStart.append(transac_d);
 
-            var gridEnd = $('<div id="gridEnd" class="row m_lr0"></div>');
-            var transac_f = "<div class='col-8 p_r0'>";
-            //transac_f += "<div class='w-100' style='border-top:solid 1px #e3e6f0;padding:4px;'>";
-                transac_f += "<button class='btn btn-success w_100 p-3' id='SaveInvoice'>จ่ายชำระ (F1)</button>";
+            // var gridEnd = $('<div id="gridEnd" class="row m_lr0"></div>');
+            // var transac_f = "<div class='col-8 p_r0'>";
+            // //transac_f += "<div class='w-100' style='border-top:solid 1px #e3e6f0;padding:4px;'>";
+            //     transac_f += "<button class='btn btn-success w_100 p-3' id='SaveInvoice'>จ่ายชำระ (F1)</button>";
                 
-            transac_f += "</div>";
-            transac_f += "<div class='col-4 p_l5'>";
-                transac_f += "<button class='btn btn btn-warning w_100 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>";
-            transac_f += "</div>";
-            gridEnd.append(transac_f);
+            // transac_f += "</div>";
+            // transac_f += "<div class='col-4 p_l5'>";
+            //     transac_f += "<button class='btn btn btn-warning w_100 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>";
+            // transac_f += "</div>";
+            // gridEnd.append(transac_f);
             
-            gridStart.append(gridEnd);
-            Rightbox.append(gridStart);
-            _t.Element.append(Rightbox);
+            // gridStart.append(gridEnd);
+            // Rightbox.append(gridStart);
+            // _t.Element.append(Rightbox);
         }
     };
     _t.gridControl = {

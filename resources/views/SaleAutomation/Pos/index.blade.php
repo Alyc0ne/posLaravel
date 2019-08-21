@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="card shadow posRightBox" id="Right_SellGoods">
+            {{-- <div class="card shadow posRightBox" id="Right_SellGoods">
                     <div class="card-header h_20">
                         <div style='height:100%;width:100%'>
                             <input type='text' class='wh100 text-center p_a15' style='font-size:36pt;' id='sub_total' name='sub_total' disabled>
@@ -43,7 +43,7 @@
                             <!-- GEN BY TRANSACGRID -->
                         </div>
                     </div>
-                </div>
+                </div> --}}
         </div>
     </div>
 </div>
