@@ -12,13 +12,18 @@
         <div class="col-7" style="border:solid 1px black;">
 
         </div>
-        <div class="col-5" style="border:solid 1px black;">
-                <div class="col-4">
-                    <input type='number' class="form-control" id='QtyBarcode' name='QtyBarcode' min='1' max='99' value='1'>
+        <div class="col-5">
+            <div class="row" style="margin:8px 8px;">
+                <div class="col-2" style="padding:0px;">
+                    <input type='number' class="form-control" id='QtyBarcode' name='QtyBarcode' min='1' max='99' value='1' style="text-align:center;">
                 </div>
-                <div class="8">
+                <div class="col-10"  style="padding:0px;">
                         <input list='Goods' class="form-control" id='GoodsBarcodeSearch' autofocus>
                 </div>
+            </div>
+            <div id='posDetail' style="height:200px;border:solid 1px black;">
+
+            </div>
         </div>
     </div>
 </div>
