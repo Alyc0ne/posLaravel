@@ -79,7 +79,8 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(20);
+            $OrderBy = 'CreatedDate';
+            $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
     }
@@ -90,7 +91,8 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $Goods = Goods::where($where)::paginate(7);
+            $OrderBy = 'CreatedDate';
+            $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
     }
@@ -98,41 +100,57 @@ class GoodsController extends Controller
     public function BindSave(Request $request)
     {
         $IsSuccess = false;
+        $IsDupicate = false;
+        $Count = 0;
         if ($request->ajax()) {
             try {
                 $BaseSystem = new BaseSystem();
-                $UnitID = $request->input('unitGoods');
-                $where = $BaseSystem->defaultWhere();
-                //array_push($where, 'UnitID');
-                $where['UnitID'] = $UnitID;
-                $fields = array('UnitName');
-                $UnitData = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fields, true);
-
-                $Goods = new Goods();
                 $IsBarcode = boolval($request->input('IsBarcode'));
-                $Goods->GoodsID = substr(uniqid(), 3);
-                $Goods->GoodsNo = $request->input('GoodsNo');
-                $Goods->GoodsBarcode = $IsBarcode ? $request->input('GoodsBarcode') : null;
-                $Goods->GoodsName = $request->input('GoodsName');
-                $Goods->GoodsQty = 1;
-                $Goods->GoodsPrice = $request->input('GoodsPrice');
-                $Goods->GoodsCost = $request->input('GoodsCost') != null ? $request->input('GoodsCost') : 0;
-                $Goods->GoodsUnitID = $UnitID;
-                $Goods->GoodsUnitName = $UnitData->UnitName;
-                $ID = Auth::user()->UserID;
-                $Goods->CreatedByID = "1";
-                $Goods->ModifiedByID = null;
-                $Goods->ModifiedDate = null;
-                $Goods->IsBarcode = boolval($IsBarcode);
-                $Goods->IsDelete = false;
-                $Goods->IsInactive = false;
-                $Goods->save();
+                $GoodsBarcode = $request->input('GoodsBarcode');
+                $where = $BaseSystem->defaultWhere();
+                $whereBarcode = $where;
+                $whereBarcode['GoodsBarcode'] = $GoodsBarcode;
+                if (boolval($IsBarcode)) {
+                    $Count = $BaseSystem->sqlCount('smGoods',$whereBarcode,'GoodsBarcode');
+                }
 
-                $IsSuccess = true;
-                return Response()->json($IsSuccess);
+                if ($Count == 0) {
+                    $UnitID = $request->input('unitGoods');
+                    $where = $BaseSystem->defaultWhere();
+                    //array_push($where, 'UnitID');
+                    $where['UnitID'] = $UnitID;
+                    $fields = array('UnitName');
+                    $UnitData = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fields, true);
+    
+                    $Goods = new Goods();
+                    $Goods->GoodsID = substr(uniqid(), 3);
+                    $Goods->GoodsNo = $request->input('GoodsNo');
+                    $Goods->GoodsBarcode = $IsBarcode ? $GoodsBarcode : null;
+                    $Goods->GoodsName = $request->input('GoodsName');
+                    $Goods->GoodsQty = 1;
+                    $Goods->GoodsPrice = $request->input('GoodsPrice');
+                    $Goods->GoodsCost = $request->input('GoodsCost') != null ? $request->input('GoodsCost') : 0;
+                    $Goods->GoodsUnitID = $UnitID;
+                    $Goods->GoodsUnitName = $UnitData->UnitName;
+                    $ID = Auth::user()->UserID;
+                    $Goods->CreatedByID = "1";
+                    $Goods->ModifiedByID = null;
+                    $Goods->ModifiedDate = null;
+                    $Goods->IsBarcode = boolval($IsBarcode);
+                    $Goods->IsDelete = false;
+                    $Goods->IsInactive = false;
+                    $Goods->save();
+    
+                    $IsSuccess = true;
+                }else {
+                    $IsSuccess = false;
+                    $IsDupicate = true;
+                }
+                
+                return Response()->json(array($IsSuccess,$IsDupicate));
             } catch (\Throwable $th) {
                 //throw $th;
-                return Response()->json($IsSuccess);
+                return Response()->json(array($IsSuccess,$IsDupicate));
             }
         }
     }
@@ -140,6 +158,7 @@ class GoodsController extends Controller
     public function BindEdit(Request $request)
     {
         $IsSuccess = false;
+        $IsDupicate = false;
         if ($request->ajax()) {
             try {
                 $Content = json_decode($request->getContent());
@@ -168,10 +187,10 @@ class GoodsController extends Controller
                 $Goods->save();
 
                 $IsSuccess = true;
-                return Response()->json($IsSuccess);
+                return Response()->json(array($IsSuccess,$IsDupicate));
             } catch (\Throwable $th) {
                 //throw $th;
-                return Response()->json($IsSuccess);
+                return Response()->json(array($IsSuccess,$IsDupicate));
             }
         }
     }

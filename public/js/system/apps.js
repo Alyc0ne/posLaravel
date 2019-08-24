@@ -229,11 +229,6 @@ function bindValidate(frm) {
 
 function GenData(system,type = 'new') {
     var Running = "";
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     $.ajax({
         type: 'POST',
         url: "./GenData",
@@ -246,11 +241,11 @@ function GenData(system,type = 'new') {
             Running = e.RunningNumber;
             switch (system) {
                 case "Goods":
-                    $("#frmGoods").data('type',type)
                     $("#GoodsNo").val(Running);
                     $("#tempGoodsNo").val(Running);
                     $("#GoodsName").focus();
                     $("#GoodsModal").modal();
+                    $("#btn-Save-Goods").attr('data-type', type);
                     SetDataSelect2(e.Unit, "unitGoods");
                     break;
                 case "Unit":

@@ -1,9 +1,9 @@
 // #region Action Manage Goods
 
 // #region Call Modal
-function ShowModalGoods(type) {
+function ShowModalGoods() {
     openloading(true);
-    GenData("Goods",type);
+    GenData("Goods");
 }
 
 $(document).on('click', '#btn-editGoods', function () {
@@ -20,6 +20,7 @@ $(document).on('click', '#btn-editGoods', function () {
         },
         success: function (Response) {
             if (Response != null) {
+                $("#btn-Save-Goods").attr('data-type', 'edit');
                 $('#hidGoodsID').val(Response.Goods.GoodsID);
                 $('#GoodsNo').val(Response.Goods.GoodsNo);
                 $('#tempGoodsNo').val(Response.Goods.GoodsNo);
@@ -49,21 +50,32 @@ $(document).on('submit', "#formGoods", function (e) {
     e.preventDefault();
     if (bindValidate("#frmGoods")){
         openloading(true);
-        var url = $(this).data('type') != "new" ? 'BindEditGoods' : './BindSaveGoods';
+        var GoodsID = 0;
+        var url = './BindSaveGoods';
+        var IsEdit = false;
+        if ($('#btn-Save-Goods').data('type') != "new") {
+            GoodsID = $('#hidGoodsID').val();
+            url = 'BindEditGoods';
+            IsEdit = true;
+        }
         $.ajax({
             type: "POST",
             url: url,
-            data: JSON.stringify({
-                GoodsID: $('#hidGoodsID').val(),
-                dataForm: $("#formGoods").serialize()
-            }),
+            data : !IsEdit ? $("#formGoods").serialize() : JSON.stringify({GoodsID: GoodsID,dataForm: $("#formGoods").serialize()}),
             success: function (response) {
                 console.log(response);
-                if (response) {
+                if (response[0]) {
                     refreshListData('Goods');
                     AlertStatus('success','บันทึกข้อมูลสินค้าเรียบร้อย !');
                     $("#GoodsModal").modal('toggle');
                     clearModal("GoodsModal");
+                }else{
+                    if (response[1]) {
+                        alert('รหัส Barcode ซ้ำกรุณาตรวจสอบ');
+                    }else{
+
+                    }
+                    openloading(false);
                 }
             },
             error: function (error) {

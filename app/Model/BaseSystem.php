@@ -55,4 +55,9 @@ class BaseSystem extends Model
             return DB::table($table)->select($fields)->where($where)->OrderBy($OrderBy, 'desc')->get();
         }   
     }
+
+    public function sqlCount($table, $where, $fields)
+    {
+        return DB::table($table)->select($fields)->where($where)->count();
+    }
 }
