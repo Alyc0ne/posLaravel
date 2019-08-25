@@ -241,6 +241,7 @@ function GenData(system,type = 'new') {
             Running = e.RunningNumber;
             switch (system) {
                 case "Goods":
+                    $('.modal-title').text("New Goods (เพิ่มสินค้า)");
                     $("#GoodsNo").val(Running);
                     $("#tempGoodsNo").val(Running);
                     $("#GoodsName").focus();
