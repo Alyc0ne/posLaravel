@@ -165,23 +165,21 @@ class GoodsController extends Controller
                 $GoodsID = $Content->GoodsID;
 
                 $BaseSystem = new BaseSystem();
-                $UnitID = $request->input('unitGoods');
+                $UnitID = $request->input('editunitGoods');
                 $where = $BaseSystem->defaultWhere();
                 $where['UnitID'] = $UnitID;
                 $fields = array('UnitName');
                 $UnitData = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fields, true);
 
                 $Goods = Goods::find($GoodsID);
-                $IsBarcode = boolval($request->input('IsBarcode'));
-                $Goods->GoodsBarcode = $IsBarcode ? $request->input('GoodsBarcode') : null;
-                $Goods->GoodsName = $request->input('GoodsName');
-                $Goods->GoodsPrice = $request->input('GoodsPrice');
-                $Goods->GoodsCost = $request->input('GoodsCost') != null ? $request->input('GoodsCost') : 0;
+                $IsBarcode = boolval($request->input('editIsBarcode'));
+                $Goods->GoodsBarcode = $IsBarcode ? $request->input('editGoodsBarcode') : null;
+                $Goods->GoodsName = $request->input('editGoodsName');
+                $Goods->GoodsPrice = $request->input('editGoodsPrice') != null ? $request->input('editGoodsPrice') : 0;
+                $Goods->GoodsCost = $request->input('editGoodsCost') != null ? $request->input('editGoodsCost') : 0;
                 $Goods->GoodsUnitID = $UnitID;
                 $Goods->GoodsUnitName = $UnitData->UnitName;
-                $ID = Auth::user()->UserID;
-                $Goods->CreatedByID = strval($ID);
-                $Goods->ModifiedByID = null;
+                $Goods->ModifiedByID = strval(Auth::user()->UserID);
                 $Goods->ModifiedDate = null;
                 $Goods->IsBarcode = boolval($IsBarcode);
                 $Goods->save();

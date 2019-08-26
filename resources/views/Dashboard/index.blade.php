@@ -117,10 +117,6 @@
                         
                     </div>
                 </div>
-                {{-- <button name="button" type="button" class="toggle-mobile-nav"><span class="sr-only">Open sidebar</span>
-                    <i aria-hidden="true" data-hidden="true" class="fa fa-bars"></i>
-                </button>
-                <button type="button" class="btn btn-success" onclick="javascript:ShowModalGoods();">New Goods</button> --}}
             </div>
             @yield('content')
         </div>
@@ -128,6 +124,7 @@
 </div>
 <div class='ExtendsModal'>
     @extends('Shared.Modal.Goods.AddGoods')
+    @extends('Shared.Modal.Goods.EditGoods')
     @extends('Shared.Modal.Unit.AddUnit')
 </div>
 

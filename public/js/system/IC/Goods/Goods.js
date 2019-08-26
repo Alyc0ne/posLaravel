@@ -20,21 +20,18 @@ $(document).on('click', '#btn-editGoods', function () {
         },
         success: function (Response) {
             if (Response != null) {
-                $("#btn-Save-Goods").attr('data-type', 'edit');
-                $('#hidGoodsID').val(Response.Goods.GoodsID);
-                $('#GoodsNo').val(Response.Goods.GoodsNo);
-                $('#tempGoodsNo').val(Response.Goods.GoodsNo);
+                $('#edithidGoodsID').val(Response.Goods.GoodsID);
+                $('#editGoodsNo').val(Response.Goods.GoodsNo);
+                $('#edittempGoodsNo').val(Response.Goods.GoodsNo);
                 if (Boolean(parseInt(Response.Goods.IsBarcode))) {
-                    $('#IsBarcode').trigger('click');
-                    $('#GoodsBarcode').val(Response.Goods.GoodsBarcode);
+                    $('#editIsBarcode').trigger('click');
+                    $('#editGoodsBarcode').val(Response.Goods.GoodsBarcode);
                 }
-                $('#GoodsName').val(Response.Goods.GoodsName);
-                $('#GoodsCost').val(Response.Goods.GoodsCost);
-                $('#GoodsPrice').val(Response.Goods.GoodsPrice);
-                SetDataSelect2(Response.Unit, "unitGoods")
-                var txtHeader = "Edit Goods (แก้ไขสินค้า)";
-                $('.modal-title').text(txtHeader);
-                $("#GoodsModal").modal();
+                $('#editGoodsName').val(Response.Goods.GoodsName);
+                $('#editGoodsCost').val(Response.Goods.GoodsCost);
+                $('#editGoodsPrice').val(Response.Goods.GoodsPrice);
+                SetDataSelect2(Response.Unit, "editunitGoods")
+                $("#EditGoodsModal").modal();
                 openloading(false);
             }
         },
@@ -53,10 +50,12 @@ $(document).on('submit', "#formGoods", function (e) {
         var GoodsID = 0;
         var url = './BindSaveGoods';
         var IsEdit = false;
-        if ($('#btn-Save-Goods').data('type') != "new") {
+        var idModal = "GoodsModal";
+        if ($(this).data('type') != "new") {
             GoodsID = $('#hidGoodsID').val();
             url = 'BindEditGoods';
             IsEdit = true;
+            idModal = "EditGoodsModal";
         }
         $.ajax({
             type: "POST",
@@ -67,8 +66,8 @@ $(document).on('submit', "#formGoods", function (e) {
                 if (response[0]) {
                     refreshListData('Goods');
                     AlertStatus('success','บันทึกข้อมูลสินค้าเรียบร้อย !');
-                    $("#GoodsModal").modal('toggle');
-                    clearModal("GoodsModal");
+                    $("#" + idModal).modal('toggle');
+                    clearModal(idModal);
                 }else{
                     if (response[1]) {
                         alert('รหัส Barcode ซ้ำกรุณาตรวจสอบ');
