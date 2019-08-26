@@ -20,18 +20,20 @@ $(document).on('click', '#btn-editGoods', function () {
         },
         success: function (Response) {
             if (Response != null) {
-                $('#edithidGoodsID').val(Response.Goods.GoodsID);
-                $('#editGoodsNo').val(Response.Goods.GoodsNo);
-                $('#edittempGoodsNo').val(Response.Goods.GoodsNo);
+                $("#btn-Save-Goods").attr('data-type', 'edit');
+                $('#hidGoodsID').val(Response.Goods.GoodsID);
+                $('#GoodsNo').val(Response.Goods.GoodsNo);
+                $('#tempGoodsNo').val(Response.Goods.GoodsNo);
                 if (Boolean(parseInt(Response.Goods.IsBarcode))) {
-                    $('#editIsBarcode').trigger('click');
-                    $('#editGoodsBarcode').val(Response.Goods.GoodsBarcode);
+                    $('#IsBarcode').trigger('click');
+                    $('#GoodsBarcode').val(Response.Goods.GoodsBarcode);
                 }
-                $('#editGoodsName').val(Response.Goods.GoodsName);
-                $('#editGoodsCost').val(Response.Goods.GoodsCost);
-                $('#editGoodsPrice').val(Response.Goods.GoodsPrice);
-                SetDataSelect2(Response.Unit, "editunitGoods")
-                $("#EditGoodsModal").modal();
+                $('#GoodsName').val(Response.Goods.GoodsName);
+                $('#GoodsCost').val(Response.Goods.GoodsCost);
+                $('#GoodsPrice').val(Response.Goods.GoodsPrice);
+                SetDataSelect2(Response.Unit, "unitGoods")
+                $('.modal-title').text("Edit Goods (แก้ไขสินค้า)");
+                $("#GoodsModal").modal();
                 openloading(false);
             }
         },
@@ -47,20 +49,16 @@ $(document).on('submit', "#formGoods", function (e) {
     e.preventDefault();
     if (bindValidate("#frmGoods")){
         openloading(true);
-        var GoodsID = 0;
         var url = './BindSaveGoods';
-        var IsEdit = false;
         var idModal = "GoodsModal";
-        if ($(this).data('type') != "new") {
-            GoodsID = $('#hidGoodsID').val();
+        if ($('#btn-Save-Goods').data('type') != "new") {
             url = 'BindEditGoods';
-            IsEdit = true;
             idModal = "EditGoodsModal";
         }
         $.ajax({
             type: "POST",
             url: url,
-            data : !IsEdit ? $("#formGoods").serialize() : JSON.stringify({GoodsID: GoodsID,dataForm: $("#formGoods").serialize()}),
+            data : $("#formGoods").serialize(),
             success: function (response) {
                 console.log(response);
                 if (response[0]) {

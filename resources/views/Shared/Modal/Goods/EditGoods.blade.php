@@ -1,4 +1,4 @@
-<!-- Modal -->
+{{-- <!-- Modal -->
 <div class="modal fade modalInsert" id="EditGoodsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id='formGoods' data-type='edit'>
+      <form id='editformGoods' data-type='edit'>
         <div class="modal-body">
             <div id='frmGoods'>
                 <div class="form-group row">
@@ -24,9 +24,9 @@
                         <div class="custom-control custom-checkbox mr-sm-2">
                             <input type="checkbox" class="custom-control-input" id="editIsBarcode">
                             <input type="hidden" name="editIsBarcode" value="0"/>
-                            <label class="custom-control-label" for="IsBarcode">ใช้งาน Barcode</label>
+                            <label class="custom-control-label" for="editIsBarcode">ใช้งาน Barcode</label>
                         </div>
-                        <input type="text" class="form-control" id="editoodsBarcode" name="editGoodsBarcode" data-maxlength='10' disabled autocomplete="off">
+                        <input type="text" class="form-control" id="editGoodsBarcode" name="editGoodsBarcode" data-maxlength='10' disabled autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -64,4 +64,4 @@
        </form>
     </div>
   </div>
-</div>
+</div> --}}

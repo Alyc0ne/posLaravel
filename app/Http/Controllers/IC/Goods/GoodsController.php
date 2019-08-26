@@ -132,8 +132,7 @@ class GoodsController extends Controller
                     $Goods->GoodsCost = $request->input('GoodsCost') != null ? $request->input('GoodsCost') : 0;
                     $Goods->GoodsUnitID = $UnitID;
                     $Goods->GoodsUnitName = $UnitData->UnitName;
-                    $ID = Auth::user()->UserID;
-                    $Goods->CreatedByID = "1";
+                    $Goods->CreatedByID = strval(Auth::user()->UserID);
                     $Goods->ModifiedByID = null;
                     $Goods->ModifiedDate = null;
                     $Goods->IsBarcode = boolval($IsBarcode);
@@ -161,22 +160,23 @@ class GoodsController extends Controller
         $IsDupicate = false;
         if ($request->ajax()) {
             try {
-                $Content = json_decode($request->getContent());
-                $GoodsID = $Content->GoodsID;
+                $GoodsID = $request->input('hidGoodsID');
 
                 $BaseSystem = new BaseSystem();
-                $UnitID = $request->input('editunitGoods');
+                $UnitID = $request->input('unitGoods');
                 $where = $BaseSystem->defaultWhere();
                 $where['UnitID'] = $UnitID;
                 $fields = array('UnitName');
                 $UnitData = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fields, true);
 
                 $Goods = Goods::find($GoodsID);
-                $IsBarcode = boolval($request->input('editIsBarcode'));
-                $Goods->GoodsBarcode = $IsBarcode ? $request->input('editGoodsBarcode') : null;
-                $Goods->GoodsName = $request->input('editGoodsName');
-                $Goods->GoodsPrice = $request->input('editGoodsPrice') != null ? $request->input('editGoodsPrice') : 0;
-                $Goods->GoodsCost = $request->input('editGoodsCost') != null ? $request->input('editGoodsCost') : 0;
+                $IsBarcode = boolval($request->input('IsBarcode'));
+                if ($IsBarcode) {
+                    $Goods->GoodsBarcode = $request->input('GoodsBarcode');
+                }
+                $Goods->GoodsName = $request->input('GoodsName');
+                $Goods->GoodsPrice = $request->input('GoodsPrice') != null ? $request->input('GoodsPrice') : 0;
+                $Goods->GoodsCost = $request->input('GoodsCost') != null ? $request->input('GoodsCost') : 0;
                 $Goods->GoodsUnitID = $UnitID;
                 $Goods->GoodsUnitName = $UnitData->UnitName;
                 $Goods->ModifiedByID = strval(Auth::user()->UserID);
@@ -202,7 +202,7 @@ class GoodsController extends Controller
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
             $whereGoods = array_merge($where, array('GoodsID' => strval($GoodsID)));
-            $fieldsGoods = array('GoodsID','GoodsNo','GoodsName','GoodsUnitID','GoodsPrice','IsBarcode','GoodsBarcode');
+            $fieldsGoods = array('GoodsID','GoodsNo','GoodsName','GoodsUnitID','GoodsCost','GoodsPrice','IsBarcode','GoodsBarcode');
             $fieldsUnit = array('UnitID','UnitName');
             $Goods = $BaseSystem->sqlQuerySomeFields('smGoods', $whereGoods, $fieldsGoods, true);
             $Unit = $BaseSystem->sqlQuerySomeFields('smUnit', $where, $fieldsUnit);
