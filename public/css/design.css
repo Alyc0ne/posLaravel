@@ -446,7 +446,7 @@ ul {
   table-layout: fixed;
   width: 100%;
 } */
-th, td {
+.contentGoods th, td {
 	padding:5px 10px !important;
   /* white-space:nowrap; */
   overflow: hidden;
@@ -454,10 +454,6 @@ th, td {
   max-width: 200px !important;
   text-overflow: ellipsis;
 } 
-
-td {
-  /* white-space:nowrap; */
-}
 
 .pane-hScroll {
   overflow: auto;
