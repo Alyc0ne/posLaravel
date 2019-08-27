@@ -53,7 +53,6 @@ $(document).on('submit', "#formGoods", function (e) {
         var idModal = "GoodsModal";
         if ($('#btn-Save-Goods').data('type') != "new") {
             url = 'BindEditGoods';
-            idModal = "EditGoodsModal";
         }
         $.ajax({
             type: "POST",
