@@ -80,25 +80,21 @@ function manageSelectGoods(QtyBarcode,DataGoods,TransactionGoods) {
 
 //#region Select Goods By Barcode
 $(document).on("change", "#GoodsBarcodeSearch", function() {
-    openloading(true);
     var QtyBarcode = $("#QtyBarcode").val();
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     $.ajax({
         type: 'POST',
         url: './GetGoodsByBarcode',
-        dataType:'json',
-        contentType: 'json',
+        datatype: "json",
+        traditional: true,
         data: JSON.stringify({GoodsBarcode: $("#GoodsBarcodeSearch").val()}),
-        contentType: 'application/json; charset=utf-8',
-        async: false,
+        beforeSend : function () {
+            openloading(true);
+        },
         success: function(e) {
             if(e != null){
                 var GridGoods = transacSalesGoods.gridControl.selectDataGrid();
                 manageSelectGoods(QtyBarcode,e,GridGoods,GridGoods);
+                openloading(false);
             }
         },
         error: function(e) {
@@ -106,7 +102,6 @@ $(document).on("change", "#GoodsBarcodeSearch", function() {
         }
     });
     $("#GoodsBarcodeSearch").val("");
-    openloading(false);
 });
 //#endregion
 

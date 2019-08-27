@@ -446,7 +446,7 @@ ul {
   table-layout: fixed;
   width: 100%;
 } */
-.contentGoods th, td {
+.contentGoods th, .contentGoods td {
 	padding:5px 10px !important;
   /* white-space:nowrap; */
   overflow: hidden;

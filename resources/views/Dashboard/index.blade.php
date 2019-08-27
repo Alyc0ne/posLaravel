@@ -123,8 +123,7 @@
     </div>
 </div>
 <div class='ExtendsModal'>
-    @extends('Shared.Modal.Goods.AddGoods')
-    @extends('Shared.Modal.Goods.EditGoods')
+    @extends('Shared.Modal.Goods.GoodsModal')
     @extends('Shared.Modal.Unit.AddUnit')
 </div>
 

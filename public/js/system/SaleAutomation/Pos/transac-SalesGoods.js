@@ -30,10 +30,10 @@ function setTransac() {
             transac_d += "<table class='table'>";
                 transac_d += "<thead class='thead-dark'>";
                     transac_d += "<tr>";
-                        transac_d += "<th scope='col' class='w_5'>#</th>";
-                        transac_d += "<th scope='col' class='w_60'>Product</th>";
-                        transac_d += "<th scope='col' class='w_10'>Quantity</th>";
-                        transac_d += "<th scope='col' class='w_20'>Price</th>";
+                        transac_d += "<th class='w_10'>Quantity</th>";
+                        transac_d += "<th class='w_50'>Product</th>";
+                        transac_d += "<th class='w_20 text-right'>@</th>";
+                        transac_d += "<th class='w_20 text-right'>Price</th>";
                     transac_d += "</tr>";
                 transac_d += "</thead>";
                 transac_d += "<tbody class='cart_detail'></tbody>";
@@ -44,10 +44,9 @@ function setTransac() {
 
             var gridEnd = $('<div id="gridEnd" class="row m_lr0"></div>');
             var transac_f = "<div class='col-8 p_r0'>";
-            //transac_f += "<div class='w-100' style='border-top:solid 1px #e3e6f0;padding:4px;'>";
                 transac_f += "<button class='btn btn-success w_100 p-3' id='SaveInvoice'>จ่ายชำระ (F1)</button>";
-                
             transac_f += "</div>";
+
             transac_f += "<div class='col-4 p_l5'>";
                 transac_f += "<button class='btn btn btn-warning w_100 p-3' onclick='javascript:SaveInvoice();'>แบบร่าง (F2)</button>";
             transac_f += "</div>";
@@ -85,18 +84,19 @@ function setTransac() {
             var _t_body = _t.Element.find('#transac-body .cart_detail');
             var uid = RandomMath();
             var TotalAmnt = DataGoods.GoodsPrice * QtyBarcode;
-            //var PricePerGoods = QtyBarcode > 1 ? "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2))) : "";
+            var PricePerGoods = QtyBarcode > 1 ? "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2))) : "";
             var Goods = $('<tr id="GoodDetail" data-uid="' + uid + '"></tr>');
-            Goods.append('<th scope="row" class="w_5">' + NumGoods + '</th>');
-            Goods.append('<td class="w_60">' + DataGoods.GoodsName + '</td>');
-            Goods.append('<td class="w_10 text-center">' + QtyBarcode + '</td>');
-            Goods.append('<td w_25>' + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + '</td>');
+            Goods.append('<td class="w_10 text-center"><span name="GoodsQty">' + QtyBarcode + '</span></td>');
+            Goods.append('<td class="w_50 text-ellipsis" style="max-width: 200px !important;"><span title="' + DataGoods.GoodsName + '">' + DataGoods.GoodsName + '</span></td>');
+            Goods.append('<td class="w_20 text-right">' + PricePerGoods + '</td>');
+            Goods.append('<td class="w_20 text-right">' + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + '</td>');
             // var PricePerGoods = "@" + String(numberWithCommas(parseFloat(DataGoods.GoodsPrice).toFixed(2)));
             // var Goods = $('<div class="transacgrid_data box_shadow" id="GoodDetail" data-uid="' + uid + '"></div>');
-            // Goods.append("<div class='w_60 float-left text-left text-ellipsis' alt = '" + DataGoods.GoodsName + "'><span>" + DataGoods.GoodsName + "</span></div>");
             // Goods.append("<div class='w_10 float-left text-center box-highlight'><span class='w_100 h_0 text-center' name='GoodsQty'>"  + QtyBarcode + "</span></div>");
+            // Goods.append("<div class='w_50 float-left text-left text-ellipsis' alt = '" + DataGoods.GoodsName + "'><span>" + DataGoods.GoodsName + "</span></div>");
             
-            //Goods.append("<div class='w_20 float-left text-right'><span id='PricePerGoods' style='display:inline-block;'>"  + PricePerGoods + "</span></div>");
+            
+            // Goods.append("<div class='w_20 float-left text-right'><span id='PricePerGoods' style='display:inline-block;'>"  + PricePerGoods + "</span></div>");
             // Goods.append("<div class='w_20 float-left text-right'><span id='TotalAmnt'>" + numberWithCommas(parseFloat(TotalAmnt).toFixed(2)) + "</span></div>");
             // Goods.append("<div class='w_10 float-left text-right'><button type='button' class='btn btn-danger' style='font-size:4px;'>Delete</button><input type='hidden' value='" + uid + "'></div>");
             //Goods.append("<div class='w_10 float-left text-right'><img id='RemoveGoods' src='" + base_url + "extensions/images/icon/delete_16_red.png' class='p_b2 pointer'><input type='hidden' value='" + uid + "'></div>");
@@ -112,7 +112,6 @@ function setTransac() {
                 TotalAmnt : TotalAmnt
             });
             var sumPrice = QtyBarcode * DataGoods.GoodsPrice;
-            NumGoods++;
             return sumPrice;
         },
         clearData: function () {

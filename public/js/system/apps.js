@@ -160,7 +160,7 @@ function openloading(isLoad) {
     }
 }
 
-$(document).on('blur', 'input[type=text]' ,function () {
+$(document).on('change', 'input[type=text]' ,function () {
     if ($(this).val()) {
         $(this).removeClass('border_red');
         $(this).closest('div').find('div.ErrorValidate').remove();
