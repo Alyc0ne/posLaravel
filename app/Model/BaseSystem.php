@@ -42,9 +42,13 @@ class BaseSystem extends Model
         return $result = DB::table($table)->select($fields)->orderBy($OrderBy, 'desc')->first();
     }
 
-    public function sqlQueryWithPagination($table, $where, $OrderBy,$pagination)
+    public function sqlQueryWithPagination($table, $where, $OrderBy, $pagination, $IsSearch = false, $textSearch = "")
     {
-        return $result = DB::table($table)->where($where)->orderBy($OrderBy, 'desc')->paginate($pagination);
+        if (!$IsSearch) {
+            return $result = DB::table($table)->where($where)->orderBy($OrderBy, 'desc')->paginate($pagination);
+        }else {
+            return $result = DB::table($table)->where($where)->where('GoodsBarcode','like','%'.$textSearch.'%')->orderBy($OrderBy, 'desc')->paginate($pagination);
+        }
     }
 
     public function sqlQuerySomeFields($table, $where, $fields, $onerows = false, $OrderBy = 'CreatedDate')

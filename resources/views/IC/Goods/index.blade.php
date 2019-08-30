@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-12 col-lg-6 d-inline-flex flex-wrap justify-content-lg-end">
                 <div class="col-9 p_lr0">
-                    <input type="text" class="form-control" id="frmGoods-Search" placeholder="Not Ready" disabled>
+                    <input type="text" class="form-control" id="frmGoods-Search" placeholder="Not Ready">
                 </div>
                 
                 <div class="col-3 p_r0">

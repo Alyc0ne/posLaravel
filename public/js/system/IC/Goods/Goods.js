@@ -127,6 +127,30 @@ function fetch_Goods(page) {
 }
 // #endregion
 
+// #region  
+$(document).on('change', '#frmGoods-Search', function () {
+    $.ajax({
+        type: 'POST',
+        url: "testSearch",
+        datatype: "json",
+        traditional: true,
+        data: $(this).val(),
+        beforeSend : function () {
+            openloading(true);
+        },
+        success: function (e) {
+            if (e != null) {
+                $(".contentGoods").html(e);
+                openloading(false);
+            }
+        },
+        error: function (e) {
+            openloading(false);
+        }
+    });
+});
+// #endregion
+
 // #endregion
 
 

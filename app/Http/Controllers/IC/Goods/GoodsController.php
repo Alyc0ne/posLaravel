@@ -97,6 +97,18 @@ class GoodsController extends Controller
         }
     }
 
+    public function GetGoodsBySearch(Request $request)
+    {
+        if ($request->ajax()) {
+            $BaseSystem = new BaseSystem();
+            $where = $BaseSystem->defaultWhere();
+            $TextSearch = json_decode($request->getContent());
+            $OrderBy = 'ModifiedDate';
+            $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20, true, $TextSearch);
+            return view('IC.Goods.GoodsContent', compact('Goods'))->render();
+        }
+    }
+
     public function BindSave(Request $request)
     {
         $IsSuccess = false;

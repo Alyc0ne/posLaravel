@@ -39,6 +39,7 @@ Route::post('BindEditGoods', 'IC\Goods\GoodsController@BindEdit');
 Route::post('refreshGoods', 'IC\Goods\GoodsController@refreshGoods');
 Route::post('fetchGoods', 'IC\Goods\GoodsController@fetchGoods');
 Route::post('GetGoods', 'IC\Goods\GoodsController@GetGoodsByID');
+Route::post('testSearch', 'IC\Goods\GoodsController@GetGoodsBySearch');
 
 //Unit
 Route::get('unit', 'IC\Unit\UnitController@index')->name('unit');
