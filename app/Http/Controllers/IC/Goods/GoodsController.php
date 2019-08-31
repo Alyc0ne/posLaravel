@@ -20,7 +20,7 @@ class GoodsController extends Controller
     {
         $BaseSystem = new BaseSystem();
         $where = $BaseSystem->defaultWhere();
-        $OrderBy = 'ModifiedDate';
+        $OrderBy = 'CreatedDate';
         //$Goods = Goods::where($where)->orderBy('CreatedDate', 'desc')->paginate(20);
         $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20);
         $SystemName = "Goods";
@@ -79,7 +79,7 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $OrderBy = 'ModifiedDate';
+            $OrderBy = 'CreatedDate';
             $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
@@ -91,7 +91,7 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $OrderBy = 'ModifiedDate';
+            $OrderBy = 'CreatedDate';
             $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
@@ -103,7 +103,7 @@ class GoodsController extends Controller
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
             $TextSearch = json_decode($request->getContent());
-            $OrderBy = 'ModifiedDate';
+            $OrderBy = 'CreatedDate';
             $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20, true, $TextSearch);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
         }
