@@ -47,7 +47,7 @@ class BaseSystem extends Model
         if (!$IsSearch) {
             return $result = DB::table($table)->where($where)->orderBy($OrderBy, 'desc')->paginate($pagination);
         }else {
-            return $result = DB::table($table)->where($where)->where('GoodsBarcode','like','%'.$textSearch.'%')->orderBy($OrderBy, 'desc')->paginate($pagination);
+            return $result = DB::table($table)->where($where)->where('GoodsBarcode','like','%'.$textSearch.'%')->orWhere('GoodsName','like','%'.$textSearch.'%')->orderBy($OrderBy, 'desc')->paginate($pagination);
         }
     }
 

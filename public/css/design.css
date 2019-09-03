@@ -448,10 +448,10 @@ ul {
 } */
 .contentGoods th, .contentGoods td {
 	padding:5px 10px !important;
-  /* white-space:nowrap; */
+  white-space:nowrap;
   overflow: hidden;
-  min-width: 200px !important;
-  max-width: 200px !important;
+  /* min-width: 200px !important;
+  max-width: 200px !important; */
   text-overflow: ellipsis;
 } 
 

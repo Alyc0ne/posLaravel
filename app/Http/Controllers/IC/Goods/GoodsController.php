@@ -102,7 +102,7 @@ class GoodsController extends Controller
         if ($request->ajax()) {
             $BaseSystem = new BaseSystem();
             $where = $BaseSystem->defaultWhere();
-            $TextSearch = json_decode($request->getContent());
+            $TextSearch = $request->getContent();
             $OrderBy = 'CreatedDate';
             $Goods = $BaseSystem->sqlQueryWithPagination('smGoods', $where, $OrderBy, 20, true, $TextSearch);
             return view('IC.Goods.GoodsContent', compact('Goods'))->render();
